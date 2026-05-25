@@ -322,7 +322,7 @@ const AboutPage = () => {
         <div className="mb-32">
             <div className="flex items-end justify-between mb-12">
                 <h2 className="text-3xl md:text-4xl font-bold text-white">What We Offer</h2>
-                <a href="/events" className="text-sm text-blue-400 hover:text-blue-300 flex items-center gap-2 transition-colors group">
+                <a href="/#events" className="text-sm text-blue-400 hover:text-blue-300 flex items-center gap-2 transition-colors group">
                     View Calendar <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </a>
             </div>
@@ -365,10 +365,10 @@ const AboutPage = () => {
                 Join a community that values innovation and impact. Your journey starts here.
             </p>
             <div className="flex justify-center gap-4">
-                <a href="/contact" className="px-8 py-4 bg-white text-black font-bold hover:bg-purple-50 transition-colors rounded-xl shadow-[0_0_30px_-5px_rgba(255,255,255,0.3)]">
+                <a href="/#contact" className="px-8 py-4 bg-white text-black font-bold hover:bg-purple-50 transition-colors rounded-xl shadow-[0_0_30px_-5px_rgba(255,255,255,0.3)]">
                     Join IEEE RGIPT
                 </a>
-                <a href="/team" className="px-8 py-4 border border-white/20 text-white hover:bg-white/5 transition-colors rounded-xl">
+                <a href="/#team" className="px-8 py-4 border border-white/20 text-white hover:bg-white/5 transition-colors rounded-xl">
                     Meet the Team
                 </a>
             </div>

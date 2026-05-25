@@ -20,6 +20,15 @@ const nextConfig = {
     minimumCacheTTL: 60 * 60 * 24 * 30,
   },
 
+  async redirects() {
+    return [
+      { source: '/about', destination: '/#about', permanent: false },
+      { source: '/events', destination: '/#events', permanent: false },
+      { source: '/team', destination: '/#team', permanent: false },
+      { source: '/contact', destination: '/#contact', permanent: false },
+    ];
+  },
+
   async headers() {
     return [
       {

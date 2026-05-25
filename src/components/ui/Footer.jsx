@@ -7,11 +7,11 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const quickLinks = [
-    { label: "Home", href: "/" },
-    { label: "About", href: "/about" },
-    { label: "Events", href: "/events" },
-    { label: "Team", href: "/team" },
-    { label: "Contact", href: "/contact" },
+    { label: "Home", href: "/#home" },
+    { label: "About", href: "/#about" },
+    { label: "Events", href: "/#events" },
+    { label: "Team", href: "/#team" },
+    { label: "Contact", href: "/#contact" },
     { label: "Membership", href: "/membership" },
   ];
 
@@ -170,13 +170,13 @@ const Footer = () => {
             </p>
             <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-xs sm:text-sm text-white/50">
               <Link
-                href="/about"
+                href="/#about"
                 className="hover:text-white transition-colors"
               >
                 Privacy Policy
               </Link>
               <Link
-                href="/about"
+                href="/#about"
                 className="hover:text-white transition-colors"
               >
                 Terms of Service

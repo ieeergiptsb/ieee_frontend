@@ -83,7 +83,7 @@ export default function MemberDetailPage() {
       <div className="w-full min-h-screen bg-black relative flex items-center justify-center">
         <div className="text-center">
           <p className="text-white text-xl mb-4">{error || 'Member not found'}</p>
-          <Link href="/team" className="text-purple-400 hover:text-purple-300">
+          <Link href="/#team" className="text-purple-400 hover:text-purple-300">
             Return to Team
           </Link>
         </div>
@@ -99,7 +99,7 @@ export default function MemberDetailPage() {
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Back Button */}
             <Link
-              href="/team"
+              href="/#team"
               className="inline-flex items-center gap-2 mb-8 text-white/70 hover:text-white transition-colors group"
             >
               <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />

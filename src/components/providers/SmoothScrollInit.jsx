@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from 'react';
-import { initSmoothScroll } from '@/lib/smoothScroll';
+import { initSmoothScroll, smoothScrollTo } from '@/lib/smoothScroll';
 
 /**
  * Component to initialize smooth scrolling on mount
@@ -19,15 +19,12 @@ export default function SmoothScrollInit() {
     // Initialize smooth scroll for anchor links
     initSmoothScroll();
 
-    // Handle hash links on page load
+    // Handle hash links on page load (SPA sections)
     if (typeof window !== 'undefined' && window.location.hash) {
       const hash = window.location.hash;
       setTimeout(() => {
-        const element = document.querySelector(hash);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }, 100);
+        smoothScrollTo(hash, { offset: 80 });
+      }, 150);
     }
   }, []);
 

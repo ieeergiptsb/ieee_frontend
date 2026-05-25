@@ -129,7 +129,7 @@ export default function BootcampEventPage() {
         <PillNav items={navItems} />
         <div className="max-w-xl mx-auto px-4 py-32 text-center">
           <p className="text-white/60 mb-6">{loadError || "Not found"}</p>
-          <Link href="/events" className="text-purple-400 hover:underline">
+          <Link href="/#events" className="text-purple-400 hover:underline">
             Back to events
           </Link>
         </div>
@@ -143,7 +143,7 @@ export default function BootcampEventPage() {
       <PillNav items={navItems} />
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 py-24">
         <Link
-          href="/events"
+          href="/#events"
           className="inline-flex items-center gap-2 text-white/60 hover:text-white text-sm mb-8"
         >
           <ArrowLeft className="w-4 h-4" /> All events

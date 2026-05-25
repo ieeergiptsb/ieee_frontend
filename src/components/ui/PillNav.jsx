@@ -26,9 +26,16 @@ const PillNav = ({
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
   
+  const [activeHash, setActiveHash] = useState("");
+
   // Separate IEEE (home) item from other items
-  const ieeeItem = items?.find(item => item.href === "/" || item.label === "IEEE");
-  const otherItems = items?.filter(item => item.href !== "/" && item.label !== "IEEE") || [];
+  const ieeeItem = items?.find(
+    (item) => item.href === "/" || item.href === "#home" || item.label === "IEEE"
+  );
+  const otherItems =
+    items?.filter(
+      (item) => item.href !== "/" && item.href !== "#home" && item.label !== "IEEE"
+    ) || [];
   const navItems = ieeeItem ? [ieeeItem, ...otherItems] : otherItems;
   const circleRefs = useRef([]);
   const tlRefs = useRef([]);
@@ -129,6 +136,15 @@ const PillNav = ({
 
     return () => window.removeEventListener('resize', onResize);
   }, [items, ease, initialLoadAnimation]);
+
+  useEffect(() => {
+    const syncHash = () => {
+      setActiveHash(window.location.hash || "#home");
+    };
+    syncHash();
+    window.addEventListener("hashchange", syncHash);
+    return () => window.removeEventListener("hashchange", syncHash);
+  }, []);
 
   // Check authentication status — use cached user data to avoid network call on every route change
   useEffect(() => {
@@ -248,25 +264,28 @@ const PillNav = ({
   const isRouterLink = (href) => href && !isExternalLink(href) && !isAnchorLink(href);
 
   const handleLinkClick = (e, href) => {
-    if (isAnchorLink(href)) {
-      // If we're on a different page, navigate first then scroll
-      if (pathname !== '/') {
-        e.preventDefault();
-        router.push('/');
-        // Wait for navigation then scroll
-        setTimeout(() => {
-          smoothScrollTo(href, { offset: 80 });
-        }, 100);
-      } else {
-        // On same page, just scroll
-        handleAnchorClick(e, href, { offset: 80 });
-      }
+    if (!isAnchorLink(href)) return;
+
+    e.preventDefault();
+
+    if (pathname !== "/") {
+      router.push(`/${href}`);
+      return;
     }
+
+    if (window.location.hash !== href) {
+      window.history.pushState(null, "", href);
+      setActiveHash(href);
+    }
+    smoothScrollTo(href, { offset: 80 });
   };
   
   const isActive = (item) => {
-    if (item.href === "/") {
-      return pathname === "/";
+    if (item.href === "/" || item.href === "#home") {
+      return pathname === "/" && (activeHash === "#home" || activeHash === "");
+    }
+    if (isAnchorLink(item.href)) {
+      return pathname === "/" && activeHash === item.href;
     }
     return pathname?.startsWith(item.href);
   };

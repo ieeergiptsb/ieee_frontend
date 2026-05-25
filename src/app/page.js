@@ -6,16 +6,18 @@ import Link from "next/link";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import PillNav from "@/components/ui/PillNav";
 import Footer from "@/components/ui/Footer";
+import { mainNavItems } from "@/lib/nav";
 
 // Lazy load heavy components
 const HeroGeometric = dynamic(() => import("@/components/ui/shape-landing-hero").then(mod => ({ default: mod.HeroGeometric })), {
   ssr: false,
   loading: () => <div className="min-h-screen" />
 });
+const AboutPage = dynamic(() => import("@/components/ui/about-page"), { ssr: false });
+const EventsPage = dynamic(() => import("@/components/ui/events-page"), { ssr: false });
+const TeamPage = dynamic(() => import("@/components/ui/team-page"), { ssr: false });
+const ContactPage = dynamic(() => import("@/components/ui/contact-page"), { ssr: false });
 const SponsorsSection = dynamic(() => import("@/components/ui/sponsors-section"), { 
-  ssr: false 
-});
-const EventsSection = dynamic(() => import("@/components/ui/events-section"), { 
   ssr: false 
 });
 const PastEventsTimeline = dynamic(() => import("@/components/ui/past-events-timeline"), { 
@@ -26,15 +28,6 @@ const ContainerScroll = dynamic(() => import("@/components/ui/container-scroll-a
 });
 
 import { sponsorsData } from "@/data/sponsors-data";
-
-const navItems = [
-  { label: "IEEE", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Events", href: "/events" },
-  { label: "Chapters", href: "#chapters" },
-  { label: "Team", href: "/team" },
-  { label: "Contact", href: "/contact" },
-];
 
 const announcements = [
   {
@@ -338,12 +331,14 @@ export default function Home() {
   return (
     <div className="w-full min-h-screen text-white relative overflow-x-hidden" style={{ backgroundColor: '#FF0000' }}>
       <div className="relative z-10 w-full" style={{ backgroundColor: '#000000' }}>
-        <PillNav items={navItems} />
+        <PillNav items={mainNavItems} />
 
-        <HeroGeometric
-          imageSrc="/ieee logo.png"
-          imageAlt="IEEE"
-        />
+        <div id="home" className="scroll-mt-24">
+          <HeroGeometric
+            imageSrc="/ieee logo.png"
+            imageAlt="IEEE"
+          />
+        </div>
 
         {/* Announcement Section - Slider with 9:16 Images */}
         <section className="w-full py-6 sm:py-8 md:py-12 px-4 sm:px-6 md:px-8 lg:px-12">
@@ -481,10 +476,24 @@ export default function Home() {
           </div>
         </section>
 
+        {/* About */}
+        <section id="about" className="scroll-mt-24 w-full">
+          <AboutPage />
+        </section>
+
+        {/* Events */}
+        <section id="events" className="scroll-mt-24 w-full py-4 sm:py-8 md:py-12 lg:py-16 px-4 sm:px-6 md:px-8 lg:px-12">
+          <EventsPage isOpen={true} isFullPage={true} />
+        </section>
+
+        <div className="py-6 sm:py-8 md:py-12 px-4 sm:px-6 md:px-8 lg:px-12">
+          <PastEventsTimeline />
+        </div>
+
         {/* IEEE Chapters showcase - Reduced padding and tighter spacing */}
         <section
           id="chapters"
-          className="w-full py-6 sm:py-8 md:py-12 px-4 sm:px-6 md:px-8 lg:px-12"
+          className="scroll-mt-24 w-full py-6 sm:py-8 md:py-12 px-4 sm:px-6 md:px-8 lg:px-12"
         >
           <div className="space-y-2 md:space-y-3 mb-6 md:mb-8 text-center">
             <p className="text-xs sm:text-sm uppercase tracking-[0.4em] md:tracking-[0.5em] text-white/50">
@@ -625,15 +634,15 @@ export default function Home() {
         {/* Sponsors Section - Infinite scrolling */}
         <SponsorsSection sponsors={sponsorsData} />
 
-        {/* Events sections - Reduced padding */}
-        <div className="py-6 sm:py-8 md:py-12 px-4 sm:px-6 md:px-8 lg:px-12">
-          <EventsSection />
-        </div>
+        {/* Team */}
+        <section id="team" className="scroll-mt-24 w-full">
+          <TeamPage />
+        </section>
 
-        
-        <div className="py-6 sm:py-8 md:py-12 px-4 sm:px-6 md:px-8 lg:px-12">
-          <PastEventsTimeline />
-        </div>
+        {/* Contact */}
+        <section id="contact" className="scroll-mt-24 w-full">
+          <ContactPage />
+        </section>
 
         <Footer />
       </div>

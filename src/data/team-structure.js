@@ -121,12 +121,12 @@ export const TEAM_STRUCTURE = {
     },
     CNM: {
       heads_and_coheads: {
-        head: { name: "Tanya", email: "24cd3046@rgipt.ac.in" },
+        head: { name: "Tanya Mittal", email: "24cd3046@rgipt.ac.in" },
         co_heads: [
-          { name: "Rishita", email: "24cd3034@rgipt.ac.in" },
-          { name: "Shubhayu", email: "24mc3046@rgipt.ac.in" },
+          { name: "Rishitha Raj", email: "24cd3034@rgipt.ac.in" },
+          { name: "Shubhayu Brahmachari", email: "24mc3046@rgipt.ac.in" },
           { name: "Arnav", email: "24ec3010@rgipt.ac.in" },
-          { name: "Anish", email: "24mc3006@rgipt.ac.in" }
+          { name: "Anish Kalra", email: "24mc3006@rgipt.ac.in" }
         ]
       }
     }

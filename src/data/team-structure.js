@@ -65,7 +65,7 @@ export const TEAM_STRUCTURE = {
         co_heads: [
           { name: "Arindol", email: "24cd3007@rgipt.ac.in" },
           { name: "Suryansh", email: "24cs3055@rgipt.ac.in" },
-          { name: "Naman Shrestha", email: "24it3055@rgipt.ac.in" }]
+          { name: "Naman Shrestha", email: "24it3055@rgipt.ac.in" }
         ]
       }
     },

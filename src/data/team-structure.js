@@ -61,11 +61,11 @@ export const TEAM_STRUCTURE = {
         { position: "RAS Vice Secretary", name: "Rishabh Tomar", email: "23ec3039@rgipt.ac.in" }
       ],
       heads_and_coheads: {
-        head: { name: "Prajwal", email: "24ec3020@rgipt.ac.in" },
+        head: { name: "Prajjwal Singh", email: "24ec3020@rgipt.ac.in" },
         co_heads: [
           { name: "Arindol", email: "24cd3007@rgipt.ac.in" },
           { name: "Suryansh", email: "24cs3055@rgipt.ac.in" },
-          { name: "Aman Shresht", email: "24it3055@rgipt.ac.in" }
+          { name: "Naman Shrestha", email: "24it3055@rgipt.ac.in" }
         ]
       }
     },

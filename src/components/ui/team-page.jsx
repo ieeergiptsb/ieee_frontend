@@ -129,7 +129,7 @@ export const TeamPage = () => {
         const backendData = memberDataMap[head.email.toLowerCase()];
         list.push({
           name: head.name,
-          position: `Head - ${teamKey}`,
+          position: teamKey === "Joint_Secretary" ? "Joint Secretary" : `Head - ${teamKey}`,
           email: head.email,
           image: backendData?.image || backendData?.profile_image_url || null,
           linkedin: backendData?.linkedin || backendData?.linkedin_url || "",
@@ -150,9 +150,12 @@ export const TeamPage = () => {
           const backendData = memberDataMap[cohead.email.toLowerCase()];
           list.push({
             name: cohead.name,
-            position: `Cohead - ${teamKey}`,
+            position: teamKey === "Joint_Secretary" ? "Joint Secretary" : `Cohead - ${teamKey}`,
             email: cohead.email,
-            image: backendData?.image || backendData?.profile_image_url || null,
+            hideImage: teamKey === "CNM" && cohead.name === "Arnav",
+            image: (teamKey === "CNM" && cohead.name === "Arnav")
+              ? null
+              : (backendData?.image || backendData?.profile_image_url || null),
             linkedin: backendData?.linkedin || backendData?.linkedin_url || "",
             github: backendData?.github || backendData?.github_url || "",
             instagram: backendData?.instagram || backendData?.instagram_url || "",

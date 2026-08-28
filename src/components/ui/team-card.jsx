@@ -34,8 +34,10 @@ export const TeamCard = ({ member }) => {
   const profileUrl = member.slug ? `/team/${member.slug}` : (member.linkedin || null);
   
   // Resolve member image
-  const staticImage = teamImagesMap[member.name] || teamImagesMap[member.name.split(" ")[0]];
-  const imageSource = member.image || staticImage || `https://ui-avatars.com/api/?background=111827&color=fff&size=256&name=${encodeURIComponent(member.name)}`;
+  const staticImage = member.hideImage ? null : (teamImagesMap[member.name] || teamImagesMap[member.name.split(" ")[0]]);
+  const imageSource = member.hideImage
+    ? null
+    : (member.image || staticImage || `https://ui-avatars.com/api/?background=111827&color=fff&size=256&name=${encodeURIComponent(member.name)}`);
 
   return (
     <motion.div
@@ -61,15 +63,21 @@ export const TeamCard = ({ member }) => {
       {/* Circular Avatar */}
       <div className="absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 pointer-events-none">
         <div className="w-32 h-32 md:w-40 md:h-40 rounded-full p-1 bg-gradient-to-tr from-white/10 to-white/30 backdrop-blur-md shadow-[0_0_40px_rgba(0,0,0,0.5)] transition-transform duration-[1.2s] ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-110 group-hover:-translate-y-2">
-          <img
-            src={imageSource}
-            alt={member.name}
-            className="w-full h-full rounded-full object-cover border-[6px] border-neutral-900"
-            loading="lazy"
-            onError={(e) => {
-              e.target.style.display = "none";
-            }}
-          />
+          {imageSource ? (
+            <img
+              src={imageSource}
+              alt={member.name}
+              className="w-full h-full rounded-full object-cover border-[6px] border-neutral-900"
+              loading="lazy"
+              onError={(e) => {
+                e.target.style.display = "none";
+              }}
+            />
+          ) : (
+            <div className="w-full h-full rounded-full border-[6px] border-neutral-900 bg-neutral-800 flex items-center justify-center">
+              <span className="text-3xl md:text-4xl font-medium text-white/70">{getInitials(member.name)}</span>
+            </div>
+          )}
         </div>
       </div>
 

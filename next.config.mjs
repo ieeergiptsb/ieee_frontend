@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'standalone',
+  //output: 'standalone',
 
   poweredByHeader: false,
 
@@ -8,7 +8,6 @@ const nextConfig = {
   reactCompiler: true,
 
   experimental: {
-    webpackBuildWorker: true,
     optimizePackageImports: ['lucide-react', 'gsap', 'motion'],
   },
 

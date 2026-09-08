@@ -14,7 +14,6 @@ import {
   CheckCircle2,
   ExternalLink,
   Loader2,
-  Sparkles,
 } from "lucide-react";
 
 const navItems = [
@@ -27,33 +26,58 @@ const navItems = [
 ];
 
 const SLUG_POSTER_MAP = {
-  'robotics-workshop-2026': '/images/posters/robotics-workshop.png',
+  'robogenesis': '/robogenises/ROBOGENESIS.png',
+  'robotics-workshop-2026': '/robogenises/ROBOGENESIS.png',
   'devwave-2026': '/images/posters/devwave.png',
   'codenex-3': '/images/posters/codenex.png',
 };
 
 const STATIC_EVENTS_MAP = {
-  'robotics-workshop-2026': {
-    slug: 'robotics-workshop-2026',
-    title: 'Introduction to Robotics',
+  'robogenesis': {
+    slug: 'robogenesis',
+    title: 'RoboGenesis',
     category: 'Workshop',
-    tagline: 'Hands-On Robotics Workshop for First-Year RGIPT Students',
-    duration: '22 August 2026 (Tentative)',
-    banner_url: '/images/posters/robotics-workshop.png',
-    short_description: 'An interactive, hands-on introduction to Robotics & Automation, giving first-year students practical exposure to how sensors, electronics, programming, microcontrollers and control logic come together to build a functional Line Following Robot (LFR) system.',
-    description: 'An interactive, hands-on introduction to Robotics & Automation, giving first-year students practical exposure to how sensors, electronics, programming, microcontrollers and control logic come together to build a functional robotic system.\n\nOrganized by IEEE RGIPT Student Branch in collaboration with Science & Technology (S&T) Council, RGIPT.\nFor: Newly admitted First-Year Students, RGIPT.',
+    partner: 'TechFest, IIT Bombay',
+    tagline: 'Build. Learn. Compete. Innovate — One-Day Robotics Workshop',
+    duration: 'Coming Soon',
+    banner_url: '/robogenises/ROBOGENESIS.png',
+    short_description: 'RoboGenesis is a robotics workshop organised by the IEEE RGIPT Robotics & Automation Society in association with TechFest, IIT Bombay.',
+    description: 'RoboGenesis is a premier robotics workshop organised by the IEEE RGIPT Robotics & Automation Society in association with TechFest, IIT Bombay.\n\nThe workshop will cover bot design, Arduino basics, and strategies for TechFest robotics competitions, helping participants develop practical robotics skills and explore opportunities to participate in TechFest competitions through wildcard entries.\n\nOrganized by IEEE RGIPT Student Branch in collaboration with TechFest, IIT Bombay.',
     highlights: [
-      'Robotics Fundamentals & Basic Robotic Components',
-      'Line Following Robots (LFR) Architecture',
-      'Sensors & Microcontrollers Integration',
-      'Control Logic, Electronics & Programming',
-      'Hands-on experience with working LFR robots',
-      'Mentorship from IEEE RGIPT & S&T Council members'
+      'Bot Design & Hardware Architecture',
+      'Arduino Basics & Microcontroller Interfacing',
+      'Strategies for Roboreach, Meshmerize & Thetashift',
+      'Chance to get Wildcard Entry in TechFest, IIT Bombay',
+      'Hands-on Experience with Working Robotic Prototypes',
+      'Mentorship from Senior IEEE Robotics Developers'
     ],
-    topics: ['Robotics', 'Automation', 'Sensors', 'Microcontrollers', 'LFR', 'Electronics', 'Control Logic'],
+    topics: ['Bot Design', 'Arduino Basics', 'Roboreach', 'Meshmerize', 'Thetashift', 'Sensors', 'TechFest IIT Bombay'],
     registrationDisabled: true,
     isUpcoming: true,
-    statusNote: 'Registration Opening Soon — Details will be announced by IEEE RGIPT & S&T Council.'
+    statusNote: 'Registration Opening Soon — Organized in association with TechFest, IIT Bombay.'
+  },
+  'robotics-workshop-2026': {
+    slug: 'robogenesis',
+    title: 'RoboGenesis',
+    category: 'Workshop',
+    partner: 'TechFest, IIT Bombay',
+    tagline: 'Build. Learn. Compete. Innovate — One-Day Robotics Workshop',
+    duration: 'Coming Soon',
+    banner_url: '/robogenises/ROBOGENESIS.png',
+    short_description: 'RoboGenesis is a robotics workshop organised by the IEEE RGIPT Robotics & Automation Society in association with TechFest, IIT Bombay.',
+    description: 'RoboGenesis is a premier robotics workshop organised by the IEEE RGIPT Robotics & Automation Society in association with TechFest, IIT Bombay.\n\nThe workshop will cover bot design, Arduino basics, and strategies for TechFest robotics competitions, helping participants develop practical robotics skills and explore opportunities to participate in TechFest competitions through wildcard entries.\n\nOrganized by IEEE RGIPT Student Branch in collaboration with TechFest, IIT Bombay.',
+    highlights: [
+      'Bot Design & Hardware Architecture',
+      'Arduino Basics & Microcontroller Interfacing',
+      'Strategies for Roboreach, Meshmerize & Thetashift',
+      'Chance to get Wildcard Entry in TechFest, IIT Bombay',
+      'Hands-on Experience with Working Robotic Prototypes',
+      'Mentorship from Senior IEEE Robotics Developers'
+    ],
+    topics: ['Bot Design', 'Arduino Basics', 'Roboreach', 'Meshmerize', 'Thetashift', 'Sensors', 'TechFest IIT Bombay'],
+    registrationDisabled: true,
+    isUpcoming: true,
+    statusNote: 'Registration Opening Soon — Organized in association with TechFest, IIT Bombay.'
   },
   'devwave-2026': {
     slug: 'devwave-2026',
@@ -212,39 +236,63 @@ export default function BootcampEventPage() {
   return (
     <div className="min-h-screen bg-black text-white">
       <PillNav items={navItems} />
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 py-24">
+      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 pt-32 pb-24 md:pt-36">
         <Link
           href="/events"
-          className="inline-flex items-center gap-2 text-white/60 hover:text-white text-sm mb-8"
+          className="inline-flex items-center gap-2 text-white/60 hover:text-white text-sm mb-8 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" /> All events
         </Link>
 
-        <div className="rounded-2xl overflow-hidden border border-white/10 mb-10">
-          <div className="aspect-[21/9] bg-white/5 relative">
-            <img
-              src={bannerSrc(event.banner_url, slug)}
-              alt=""
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10">
-              <p className="text-xs uppercase tracking-widest text-purple-300 mb-2">
-                {event.category || "Program"}
-              </p>
-              <h1 className="text-3xl md:text-5xl font-bold">{event.title}</h1>
+        {/* Showcase Banner Header */}
+        <div className="rounded-3xl overflow-hidden border border-white/15 bg-white/[0.02] backdrop-blur-xl mb-10 p-6 md:p-8 relative">
+          <div className="absolute -top-24 -right-24 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl pointer-events-none" />
+
+          <div className="grid md:grid-cols-12 gap-8 items-center relative z-10">
+            {/* Poster Frame - 4:5 native ratio */}
+            <div className="md:col-span-5 relative mx-auto w-full max-w-sm group">
+              <div className="absolute -inset-2 bg-gradient-to-r from-purple-600/40 via-indigo-600/30 to-fuchsia-600/40 rounded-3xl blur-2xl opacity-80 group-hover:opacity-100 transition duration-500 pointer-events-none" />
+              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-white/20 shadow-2xl bg-black/60">
+                <img
+                  src={bannerSrc(event.banner_url, slug)}
+                  alt={event.title}
+                  className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-[1.02]"
+                />
+              </div>
+            </div>
+
+            {/* Event Header Information */}
+            <div className="md:col-span-7 space-y-4">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="px-3.5 py-1 rounded-full text-xs uppercase tracking-widest font-semibold bg-purple-500/20 border border-purple-500/40 text-purple-200">
+                  {event.category || "Workshop"}
+                </span>
+                {event.partner && (
+                  <span className="px-3.5 py-1 rounded-full text-xs font-semibold bg-gradient-to-r from-blue-500/20 via-indigo-500/20 to-purple-500/20 border border-indigo-400/40 text-indigo-100">
+                    {event.partner}
+                  </span>
+                )}
+              </div>
+
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight">
+                {event.title}
+              </h1>
+
               {event.tagline && (
-                <p className="text-lg text-white/80 mt-2 max-w-2xl">{event.tagline}</p>
+                <p className="text-base sm:text-lg text-purple-200/90 font-medium leading-relaxed">
+                  {event.tagline}
+                </p>
               )}
+
+              <div className="flex flex-wrap items-center gap-3 pt-2 text-sm text-white/70">
+                <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-white/5 border border-white/10 text-white/90">
+                  <Calendar className="w-4 h-4 text-purple-400" />
+                  {event.duration}
+                </span>
+              </div>
             </div>
           </div>
-        </div>
-
-        <div className="flex flex-wrap items-center gap-4 mb-10 text-sm text-white/70">
-          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10">
-            <Calendar className="w-4 h-4" />
-            {event.duration}
-          </span>
         </div>
 
         {toast && (
@@ -267,8 +315,8 @@ export default function BootcampEventPage() {
 
         {event.highlights?.length > 0 && (
           <section className="mb-12">
-            <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
-              <Sparkles className="w-5 h-5 text-purple-400" /> Highlights
+            <h2 className="text-xl font-semibold mb-4">
+              Highlights
             </h2>
             <ul className="grid sm:grid-cols-2 gap-3">
               {event.highlights.map((h, i) => (

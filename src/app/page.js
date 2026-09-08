@@ -39,13 +39,15 @@ const navItems = [
 const announcements = [
   {
     id: 1,
-    image: "/images/posters/robotics-workshop.png",
-    badge: "Workshop",
-    title: "Introduction to Robotics — Hands-On Workshop",
-    description: "An interactive, hands-on introduction to Robotics & Automation for newly admitted First-Year Students at RGIPT. Learn how sensors, electronics, programming, microcontrollers, and control logic come together to build functional Line Following Robots (LFR).",
-    description2: "Organized by IEEE RGIPT Student Branch in collaboration with Science & Technology (S&T) Council, RGIPT. Date: 22 August 2026 (tentative, subject to institute approval).",
-    primaryButton: { text: "Learn More", href: "/events/robotics-workshop-2026" },
-    secondaryButton: { text: "View Details", href: "/events/robotics-workshop-2026" }
+    image: "/robogenises/ROBOGENESIS.png",
+    badge: "Robotics Workshop",
+    partnerBadge: "In Association with TechFest, IIT Bombay",
+    title: "RoboGenesis — National Robotics Workshop",
+    description: "RoboGenesis is a robotics workshop organised by the IEEE RGIPT Robotics & Automation Society in association with TechFest, IIT Bombay.",
+    description2: "The workshop will cover bot design, Arduino basics, and strategies for TechFest robotics competitions, helping participants develop practical robotics skills and explore opportunities to participate in TechFest competitions through wildcard entries.",
+    tags: ["Bot Design", "Arduino Basics", "TechFest IIT Bombay Wildcard", "Hands-On Prototyping"],
+    primaryButton: { text: "Explore RoboGenesis", href: "/events/robogenesis" },
+    secondaryButton: { text: "View Details", href: "/events/robogenesis" }
   },
   {
     id: 2,
@@ -350,44 +352,64 @@ export default function Home() {
                       key={announcement.id}
                       className="min-w-full grid md:grid-cols-2 gap-6 md:gap-8 lg:gap-12 items-center"
                     >
-                      {/* Image Poster - Left Side - 10:16 Aspect Ratio */}
-                      <div className="relative w-full mx-auto max-w-sm md:max-w-md">
-                        <div className="relative w-full" style={{ aspectRatio: '11/16' }}>
+                      {/* Image Poster - Left Side - 4:5 Aspect Ratio matching 1080x1350 */}
+                      <div className="relative w-full mx-auto max-w-sm md:max-w-md group">
+                        {/* Ambient glow behind poster */}
+                        <div className="absolute -inset-2 bg-gradient-to-r from-purple-600/30 via-indigo-600/30 to-fuchsia-600/30 rounded-3xl blur-2xl opacity-75 group-hover:opacity-100 transition duration-500 pointer-events-none" />
+                        <div className="relative w-full rounded-2xl md:rounded-3xl overflow-hidden border border-white/15 shadow-2xl bg-black/40" style={{ aspectRatio: '4/5' }}>
                           <img
                             src={announcement.image}
                             alt={announcement.title}
-                            className="w-full h-full object-cover rounded-2xl md:rounded-3xl border border-white/10 shadow-lg"
+                            className="w-full h-full object-contain rounded-2xl md:rounded-3xl transition-transform duration-500 group-hover:scale-[1.02]"
                           />
                         </div>
                       </div>
 
                       {/* Text Content - Right Side */}
-                      <div className="space-y-4 md:space-y-6">
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-md">
-                          <span className="text-xs uppercase tracking-wider text-white/80 font-semibold">
-                            {announcement.badge}
-                          </span>
+                      <div className="space-y-4 md:space-y-5">
+                        <div className="flex flex-wrap items-center gap-2">
+                          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-500/20 border border-purple-500/40 backdrop-blur-md">
+                            <span className="text-xs uppercase tracking-wider text-purple-200 font-semibold">
+                              {announcement.badge}
+                            </span>
+                          </div>
+                          {announcement.partnerBadge && (
+                            <div className="inline-flex items-center px-3.5 py-1.5 rounded-full bg-gradient-to-r from-blue-500/20 via-indigo-500/20 to-purple-500/20 border border-indigo-400/40 backdrop-blur-md">
+                              <span className="text-xs font-semibold text-indigo-100">
+                                {announcement.partnerBadge}
+                              </span>
+                            </div>
+                          )}
                         </div>
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
+                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-tight tracking-tight">
                           {announcement.title}
                         </h2>
-                        <p className="text-base md:text-lg text-white/70 leading-relaxed">
+                        <p className="text-base md:text-lg text-white/80 leading-relaxed font-normal">
                           {announcement.description}
                         </p>
-                        <p className="text-base md:text-lg text-white/70 leading-relaxed">
+                        <p className="text-sm md:text-base text-white/65 leading-relaxed">
                           {announcement.description2}
                         </p>
-                        <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                        {announcement.tags && (
+                          <div className="flex flex-wrap gap-2 pt-1">
+                            {announcement.tags.map((tag, idx) => (
+                              <span key={idx} className="px-3 py-1 rounded-lg text-xs font-medium bg-white/5 border border-white/10 text-white/80 hover:border-purple-500/40 transition-colors">
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                        <div className="flex flex-col sm:flex-row gap-4 pt-3">
                           <Link
                             href={announcement.primaryButton.href}
-                            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white hover:bg-white/90 text-black font-semibold rounded-lg transition-all hover:scale-105 active:scale-95"
+                            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-semibold rounded-xl shadow-lg shadow-indigo-500/25 transition-all hover:scale-[1.03] active:scale-95"
                           >
                             {announcement.primaryButton.text}
                             <ArrowRight className="w-4 h-4" />
                           </Link>
                           <Link
                             href={announcement.secondaryButton.href}
-                            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/15 border border-white/20 text-white font-semibold rounded-lg backdrop-blur-md transition-all hover:scale-105 active:scale-95"
+                            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/15 border border-white/20 text-white font-semibold rounded-xl backdrop-blur-md transition-all hover:scale-[1.03] active:scale-95"
                           >
                             {announcement.secondaryButton.text}
                           </Link>

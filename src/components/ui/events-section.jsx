@@ -3,17 +3,17 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 
-// Active upcoming events — Introduction to Robotics Workshop
+// Active upcoming events — RoboGenesis Robotics Workshop
 const events = [
   {
-    name: 'Introduction to Robotics',
-    slug: 'robotics-workshop-2026',
-    image: '/images/posters/robotics-workshop.png',
-    route: '/events/robotics-workshop-2026',
-    color: '#06b6d4',
-    tag: 'Workshop',
-    attendees: '1st-Year Students',
-    timeline: '22 Aug 2026',
+    name: 'RoboGenesis',
+    slug: 'robogenesis',
+    image: '/robogenises/ROBOGENESIS.png',
+    route: '/events/robogenesis',
+    color: '#8b5cf6',
+    tag: 'TechFest IIT Bombay Partner',
+    attendees: 'Hands-on Robotics',
+    timeline: 'Coming Soon',
   },
 ];
 
@@ -190,9 +190,9 @@ const EventsSection = () => {
                   absolute rounded-2xl md:rounded-3xl overflow-hidden
                   transition-all duration-[600ms] ease-[cubic-bezier(0.34,1.56,0.64,1)]
                   border-2 shadow-[0_20px_60px_rgba(0,0,0,0.5)] bg-black/20
-                  w-[85vw] max-w-[340px] aspect-[3/4]
+                  w-[85vw] max-w-[340px] aspect-[4/5]
                   sm:w-[380px] md:w-[420px]
-                  ${isActive ? 'opacity-100 z-10 cursor-pointer border-white/30 event-card-active event-card-progress md:scale-110' : ''}
+                  ${isActive ? 'opacity-100 z-10 cursor-pointer border-purple-500/40 event-card-active event-card-progress md:scale-110' : ''}
                   ${isPrevNext ? 'hidden md:block opacity-60 z-[5] grayscale-[40%] blur-[0.5px] cursor-pointer border-white/15 hover:opacity-90' : ''}
                   ${position === 'hidden' ? 'opacity-0 pointer-events-none' : ''}
                 `}
@@ -208,17 +208,26 @@ const EventsSection = () => {
                     decoding="async"
                   />
                   {isActive && (
-                    <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 bg-gradient-to-t from-black/90 via-black/50 to-transparent">
-                      <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-1.5 sm:mb-2">
-                        <span className="px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-white/15 border border-white/20 text-[10px] sm:text-xs text-white">
-                          {event.tag}
-                        </span>
-                        <span className="px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-white/15 border border-white/20 text-[10px] sm:text-xs text-white">
-                          {event.timeline}
+                    <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20">
+                      <span className="px-3 py-1 rounded-full bg-black/65 backdrop-blur-md border border-purple-400/40 text-[11px] sm:text-xs font-semibold text-purple-200 shadow-lg shadow-purple-950/60">
+                        {event.tag}
+                      </span>
+                    </div>
+                  )}
+                  {isActive && (
+                    <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 bg-gradient-to-t from-black/85 via-black/35 to-transparent backdrop-blur-[2px]">
+                      <div className="flex items-center justify-between gap-2">
+                        <div>
+                          <div className="flex items-center gap-1.5 mb-0.5">
+                            <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
+                            <span className="text-[11px] uppercase tracking-wider text-purple-300 font-semibold">{event.timeline}</span>
+                          </div>
+                          <h3 className="text-base sm:text-lg font-bold text-white tracking-wide">{event.name}</h3>
+                        </div>
+                        <span className="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white hover:text-black border border-white/20 text-xs font-semibold text-white transition-colors">
+                          Explore →
                         </span>
                       </div>
-                      <h3 className="text-base sm:text-lg md:text-xl font-bold text-white mb-0.5 sm:mb-1">{event.name}</h3>
-                      <p className="text-xs sm:text-sm text-white/80">{event.attendees} attendees</p>
                     </div>
                   )}
                 </div>

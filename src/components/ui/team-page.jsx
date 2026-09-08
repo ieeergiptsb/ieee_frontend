@@ -123,47 +123,47 @@ export const TeamPage = () => {
         });
       }
 
-      // Add head
+      // Add head cards without personal data (name, photo, socials)
       if (team.heads_and_coheads?.head) {
-        const head = team.heads_and_coheads.head;
-        const backendData = memberDataMap[head.email.toLowerCase()];
         list.push({
-          name: head.name,
+          id: `${teamKey}-head`,
+          name: "",
           position: teamKey === "Joint_Secretary" ? "Joint Secretary" : `Head - ${teamKey}`,
-          email: head.email,
-          image: backendData?.image || backendData?.profile_image_url || null,
-          linkedin: backendData?.linkedin || backendData?.linkedin_url || "",
-          github: backendData?.github || backendData?.github_url || "",
-          instagram: backendData?.instagram || backendData?.instagram_url || "",
-          bio: backendData?.bio || "",
-          achievements: backendData?.achievements || "",
+          email: "",
+          hideIdentity: true,
+          hideImage: true,
+          image: null,
+          linkedin: "",
+          github: "",
+          instagram: "",
+          bio: "",
+          achievements: "",
           team: displayTeamName,
           category: category,
-          slug: backendData?.slug || (head.name ? generateSlug(head.name) : null),
+          slug: null,
           order: 3
         });
       }
 
-      // Add coheads
+      // Add cohead cards without personal data (name, photo, socials)
       if (team.heads_and_coheads?.co_heads) {
-        team.heads_and_coheads.co_heads.forEach(cohead => {
-          const backendData = memberDataMap[cohead.email.toLowerCase()];
+        team.heads_and_coheads.co_heads.forEach((_, index) => {
           list.push({
-            name: cohead.name,
+            id: `${teamKey}-cohead-${index}`,
+            name: "",
             position: teamKey === "Joint_Secretary" ? "Joint Secretary" : `Cohead - ${teamKey}`,
-            email: cohead.email,
-            hideImage: teamKey === "CNM" && cohead.name === "Arnav",
-            image: (teamKey === "CNM" && cohead.name === "Arnav")
-              ? null
-              : (backendData?.image || backendData?.profile_image_url || null),
-            linkedin: backendData?.linkedin || backendData?.linkedin_url || "",
-            github: backendData?.github || backendData?.github_url || "",
-            instagram: backendData?.instagram || backendData?.instagram_url || "",
-            bio: backendData?.bio || "",
-            achievements: backendData?.achievements || "",
+            email: "",
+            hideIdentity: true,
+            hideImage: true,
+            image: null,
+            linkedin: "",
+            github: "",
+            instagram: "",
+            bio: "",
+            achievements: "",
             team: displayTeamName,
             category: category,
-            slug: backendData?.slug || (cohead.name ? generateSlug(cohead.name) : null),
+            slug: null,
             order: 4
           });
         });
@@ -206,7 +206,7 @@ export const TeamPage = () => {
     });
 
     return list;
-  }, [memberDataMap, newDesignationMembers]);
+  }, [memberDataMap, newDesignationMembers, TEAM_STRUCTURE]);
 
   // Filter members by tab and search query
   const filteredMembersByTeam = useMemo(() => {
@@ -216,9 +216,9 @@ export const TeamPage = () => {
       const query = searchQuery.toLowerCase();
       list = list.filter(
         m => 
-          m.name.toLowerCase().includes(query) ||
-          m.position.toLowerCase().includes(query) ||
-          m.team.toLowerCase().includes(query)
+          (m.name || "").toLowerCase().includes(query) ||
+          (m.position || "").toLowerCase().includes(query) ||
+          (m.team || "").toLowerCase().includes(query)
       );
     }
 
@@ -352,7 +352,10 @@ export const TeamPage = () => {
                     {filteredMembersByTeam[teamName]
                       .sort((a, b) => a.order - b.order)
                       .map((member) => (
-                        <TeamCard key={member.email} member={member} />
+                        <TeamCard
+                          key={member.id || `${member.email}-${member.team}-${member.position}`}
+                          member={member}
+                        />
                       ))}
                   </div>
                 </div>

@@ -2,54 +2,54 @@
 export const teamData = {
   executive: {
     chair: {
-      name: "Kunal Kumar",
+      name: "Anagh Krishna Singh",
       position: "Chairperson",
       linkedin: "",
       github: "",
       instagram: "",
-      image: "/images/kunal kumar.png",
+      image: "/team-images/Anagh.jpeg",
       bio: "Leading the IEEE Student Branch with vision and dedication.",
       journey: "As the Chairperson of IEEE Student Branch, I oversee all operations and strategic planning."
     },
     viceChair: {
-      name: "Jay Kumar Sinha",
+      name: "Aadrikaa Gupta",
       position: "Vice Chairperson",
       linkedin: "",
       github: "",
       instagram: "",
-      image: "/team/jay-kumar-sinha.jpg",
+      image: "/team-images/Aadrika.png",
       bio: "Supporting the Chairperson in leading the branch forward.",
       journey: "Working closely with the Chairperson to ensure smooth operations."
     },
     secretaries: [
       {
-        name: "Anandsagar Sanjay Gaikwad",
+        name: "Prateek Raj",
         position: "Secretary",
         linkedin: "",
       github: "",
       instagram: "",
-        image: "/team/anandsagar-gaikwad.jpg",
+        image: "/team-images/Prateek.png",
         bio: "Managing branch documentation and communications.",
         journey: "Handling all secretarial duties and maintaining records."
       },
       {
-        name: "Chhavi Bhatt",
+        name: "Shreya Yadav",
         position: "Secretary",
         linkedin: "",
       github: "",
       instagram: "",
-        image: "/team/chhavi-bhatt.jpg",
+        image: "/team-images/Shreya.jpeg",
         bio: "Co-managing branch documentation and communications.",
         journey: "Working alongside the team to maintain organizational efficiency."
       }
     ],
     treasurer: {
-      name: "Karan Pratap Singh",
+      name: "Paranjay Soni",
       position: "Treasurer",
       linkedin: "",
       github: "",
       instagram: "",
-      image: "/team/karan-pratap-singh.jpg",
+      image: "/team-images/Praranjay.jpeg",
       bio: "Managing branch finances and budget planning.",
       journey: "Ensuring financial transparency and efficient resource allocation."
     }
@@ -57,145 +57,125 @@ export const teamData = {
   webDesignTeam: {
     webmasters: [
       {
-        name: "Aditya Bhattacharya",
+        name: "Akash Rai",
         position: "Web Master",
         linkedin: "",
       github: "",
       instagram: "",
-        image: "/team/aditya-bhattacharya.jpg",
+        image: "/team-images/Akash.png",
         bio: "Leading web development and technical infrastructure.",
         journey: "Building and maintaining the IEEE website and digital presence."
-      },
-      {
-        name: "Vaibhav",
-        position: "Web Master",
-        linkedin: "",
-      github: "",
-      instagram: "",
-        image: "/team/vaibhav.jpg",
-        bio: "Co-leading web development initiatives.",
-        journey: "Working on frontend and backend development for IEEE platforms."
       }
     ],
     graphicDesigners: []
   },
   technicalTeam: {
     csSecretary: {
-      name: "Aditya Bhattacharya",
+      name: "Arindol Sarkar",
       position: "CS Secretary",
       linkedin: "",
       github: "",
       instagram: "",
-      image: "/team/aditya-bhattacharya.jpg",
+      image: "/team-images/Arindol.jpeg",
       bio: "Leading Computer Society initiatives.",
       journey: "Organizing CS-related events and technical sessions."
     },
     csViceSecretaries: [
       {
-        name: "Vaibhav",
+        name: "Keshav Kashyap",
         position: "CS Vice-Secretary",
         linkedin: "",
       github: "",
       instagram: "",
-        image: "/team/vaibhav.jpg",
+        image: "",
+        bio: "Supporting CS initiatives and events.",
+        journey: "Assisting in organizing technical workshops and competitions."
+      },
+      {
+        name: "Prashant Singh",
+        position: "CS Vice-Secretary",
+        linkedin: "",
+      github: "",
+      instagram: "",
+        image: "/team-images/Prashant.jpeg",
         bio: "Supporting CS initiatives and events.",
         journey: "Assisting in organizing technical workshops and competitions."
       }
     ],
     rasSecretary: {
-      name: "Akhileshwar Pratap Singh",
+      name: "Prajjwal Singh",
       position: "RAS Secretary",
       linkedin: "",
       github: "",
       instagram: "",
-      image: "/team/akhileshwar-singh.jpg",
+      image: "/team-images/Prajwal.jpeg",
       bio: "Leading Robotics and Automation Society activities.",
       journey: "Organizing robotics workshops, competitions, and technical sessions."
     },
     rasViceSecretaries: [
       {
-        name: "Raushan Kumar",
+        name: "Ashutosh Yadav",
         position: "RAS Vice-Secretary",
         linkedin: "",
       github: "",
       instagram: "",
-        image: "/team/raushan-kumar.jpg",
+        image: "/team-images/Ashutosh.jpeg",
         bio: "Supporting RAS initiatives and robotics events.",
         journey: "Helping organize robotics competitions and technical workshops."
       },
       {
-        name: "Rishabh Tomar",
+        name: "Naman Shrestha",
         position: "RAS Vice-Secretary",
         linkedin: "",
       github: "",
       instagram: "",
-        image: "/team/rishabh-tomar.jpg",
+        image: "/team-images/Naman Shrestha.png",
         bio: "Co-supporting RAS activities and events.",
         journey: "Working on robotics projects and technical sessions."
       }
     ],
     wieSecretary: {
-      name: "Gauri Maurya",
+      name: "Vedanshi Shrivastava",
       position: "WIE Secretary",
       linkedin: "",
       github: "",
       instagram: "",
-      image: "/team/gauri-maurya.jpg",
+      image: "/team-images/Vedanshi.png",
       bio: "Leading Women in Engineering initiatives.",
       journey: "Promoting diversity and organizing WIE events and mentorship programs."
     },
     wieViceSecretaries: [
       {
-        name: "Maanvi Mishra",
+        name: "Tanya Mittal",
         position: "WIE Vice-Secretary",
         linkedin: "",
       github: "",
       instagram: "",
-        image: "/team/maanvi-mishra.jpg",
+        image: "/team-images/Tanya.png",
         bio: "Supporting WIE initiatives and events.",
         journey: "Helping organize WIE workshops and networking events."
-      },
-      {
-        name: "Anshita Singh",
-        position: "WIE Vice-Secretary",
-        linkedin: "",
-      github: "",
-      instagram: "",
-        image: "/team/anshita-singh.jpg",
-        bio: "Co-supporting WIE activities.",
-        journey: "Working on WIE mentorship and outreach programs."
       }
     ],
     comsocSecretary: {
-      name: "Shivam Chaturvedi",
+      name: "Krishna Gupta",
       position: "COMSOC Secretary",
       linkedin: "",
       github: "",
       instagram: "",
-      image: "/team/shivam-chaturvedi.jpg",
+      image: "/team-images/Krishna.jpeg",
       bio: "Leading Communications Society activities.",
       journey: "Organizing COMSOC events, workshops, and technical sessions."
     },
     comsocViceSecretaries: [
       {
-        name: "Prabhat Kushwaha",
+        name: "Naman Patel",
         position: "COMSOC Vice-Secretary",
         linkedin: "",
       github: "",
       instagram: "",
-        image: "/team/prabhat-kushwaha.jpg",
+        image: "/team-images/Naman Patel.jpeg",
         bio: "Supporting COMSOC initiatives.",
         journey: "Helping organize communications-related events and workshops."
-      },
-      {
-        name: "Mouli",
-        position: "COMSOC Vice-Secretary",
-        linkedin: "",
-      github: "",
-      instagram: "",
-        image: "/team/mouli.jpg",
-        bio: "Co-supporting COMSOC activities.",
-        journey: "Working on COMSOC projects and technical sessions."
       }
     ]
   },
@@ -241,12 +221,7 @@ export const getMemberBySlug = (slug) => {
   
   // Web & Design Team
   teamData.webDesignTeam.webmasters.forEach((wm) => {
-    const slug = generateSlug(wm.name);
-    if (wm.name === 'Aditya Bhattacharya' && wm.position === 'Web Master') {
-      allMembers.push({ ...wm, slug: slug + '-webmaster' });
-    } else {
-      allMembers.push({ ...wm, slug });
-    }
+    allMembers.push({ ...wm, slug: generateSlug(wm.name) });
   });
   
   // Technical Team

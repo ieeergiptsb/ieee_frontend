@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Linkedin, Github, Mail, Instagram } from "lucide-react";
+import { Linkedin, Github, Mail, Instagram, User } from "lucide-react";
 import Link from "next/link";
 import teamImagesMap from "@/data/team-images-map.json";
 
@@ -30,12 +30,19 @@ const getDynamicGradient = (name) => {
 };
 
 export const TeamCard = ({ member }) => {
+  const isAnonymous = member.hideIdentity || !member.name;
+
   // Resolve link to profile or LinkedIn
-  const profileUrl = member.slug ? `/team/${member.slug}` : (member.linkedin || null);
+  const profileUrl = isAnonymous
+    ? null
+    : (member.slug ? `/team/${member.slug}` : (member.linkedin || null));
   
   // Resolve member image
-  const staticImage = member.hideImage ? null : (teamImagesMap[member.name] || teamImagesMap[member.name.split(" ")[0]]);
-  const imageSource = member.hideImage
+  const firstName = member.name ? member.name.split(" ")[0] : "";
+  const staticImage = (member.hideImage || isAnonymous)
+    ? null
+    : (teamImagesMap[member.name] || teamImagesMap[firstName]);
+  const imageSource = (member.hideImage || isAnonymous)
     ? null
     : (member.image || staticImage || `https://ui-avatars.com/api/?background=111827&color=fff&size=256&name=${encodeURIComponent(member.name)}`);
 
@@ -75,7 +82,11 @@ export const TeamCard = ({ member }) => {
             />
           ) : (
             <div className="w-full h-full rounded-full border-[6px] border-neutral-900 bg-neutral-800 flex items-center justify-center">
-              <span className="text-3xl md:text-4xl font-medium text-white/70">{getInitials(member.name)}</span>
+              {isAnonymous ? (
+                <User className="w-12 h-12 md:w-14 md:h-14 text-white/40" strokeWidth={1.5} />
+              ) : (
+                <span className="text-3xl md:text-4xl font-medium text-white/70">{getInitials(member.name)}</span>
+              )}
             </div>
           )}
         </div>
@@ -88,9 +99,11 @@ export const TeamCard = ({ member }) => {
           <div className="absolute inset-0 bg-gradient-to-tr from-pink-500/10 via-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
           
           <div className="relative z-10 flex flex-col items-center text-center space-y-1">
-            <h3 className="text-xl md:text-2xl font-medium text-white tracking-tight">
-              {member.name}
-            </h3>
+            {member.name ? (
+              <h3 className="text-xl md:text-2xl font-medium text-white tracking-tight">
+                {member.name}
+              </h3>
+            ) : null}
             <p className="text-sm font-normal text-white/60 tracking-wide uppercase">
               {member.position}
             </p>

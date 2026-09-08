@@ -57,7 +57,7 @@ export default function MemberDetailPage() {
 
         // Helper to check if slug matches
         const checkMatch = (person, teamName, pos) => {
-          if (!person) return false;
+          if (!person?.name) return false;
           // Simple slug generator for comparison
           const slug = person.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
           // In team-data.js, officers might have '-cs' etc appended, but let's just do a basic match first

@@ -92,24 +92,33 @@ const isTimelinePast = (dateString) => {
 // --- Events Data (Current & Upcoming) ---
 export const EVENTS_DATA = [
   {
-    id: 'robotics-workshop-2026',
-    event_slug: 'robotics-workshop-2026',
-    title: 'Introduction to Robotics',
+    id: 'robogenesis',
+    event_slug: 'robogenesis',
+    title: 'RoboGenesis',
     category: 'Workshops',
-    date: '22 August 2026',
-    time: '22 Aug 2026 (Tentative)',
-    description: 'An interactive, hands-on introduction to Robotics & Automation for newly admitted First-Year Students, RGIPT.',
-    fullDescription: 'An interactive, hands-on introduction to Robotics & Automation, giving first-year students practical exposure to how sensors, electronics, programming, microcontrollers and control logic come together to build a functional Line Following Robot (LFR) system.',
-    image: '/images/posters/robotics-workshop.png',
-    difficulty: 'Beginner',
-    language: 'Robotics, LFR, Microcontrollers, Sensors',
-    location: 'RGIPT Campus (S&T Council)',
-    requirements: ['Microcontrollers & Sensors', 'Control Logic & Programming', 'Line Following Robots (LFR)'],
+    date: 'Coming Soon',
+    time: 'One-Day Robotic Workshop',
+    description: 'RoboGenesis is a robotics workshop organised by the IEEE RGIPT Robotics & Automation Society in association with TechFest, IIT Bombay.',
+    fullDescription: 'RoboGenesis is a premier robotics workshop organised by the IEEE RGIPT Robotics & Automation Society in association with TechFest, IIT Bombay. The workshop covers bot design, Arduino basics, and strategies for TechFest robotics competitions, helping participants develop practical robotics skills and explore opportunities to participate in TechFest competitions through wildcard entries.',
+    image: '/robogenises/ROBOGENESIS.png',
+    difficulty: 'Beginner to Intermediate',
+    language: 'Arduino, Embedded Robotics, C++',
+    location: 'RGIPT Campus (In association with TechFest, IIT Bombay)',
+    requirements: [
+      'Bot Design Fundamentals',
+      'Arduino Basics & Sensors',
+      'Strategies for Roboreach, Meshmerize & Thetashift',
+      'Wildcard Opportunities for TechFest IIT Bombay'
+    ],
+    prizes: [
+      'Chance to get Wildcard Entry in TechFest, IIT Bombay',
+      'Official Certificates & IEEE RGIPT Goodies'
+    ],
     registrationOpen: false,
-    route: '/events/robotics-workshop-2026',
+    route: '/events/robogenesis',
     seatsLimited: true,
     registeredSeats: 0,
-    totalSeats: 100,
+    totalSeats: 150,
   },
 ];
 
@@ -223,6 +232,8 @@ const formatBootcampDate = (event) => {
 };
 
 const SLUG_POSTER_MAP = {
+  'robogenesis': '/robogenises/ROBOGENESIS.png',
+  'robotics-workshop-2026': '/robogenises/ROBOGENESIS.png',
   'devwave-2026': '/images/posters/devwave.png',
   'codenex-3': '/images/posters/codenex.png',
 };

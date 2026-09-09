@@ -96,7 +96,7 @@ export const EVENTS_DATA = [
     event_slug: 'robogenesis',
     title: 'RoboGenesis',
     category: 'Workshops',
-    date: 'Coming Soon',
+    date: 'One-Day Intensive Workshop',
     time: 'One-Day Robotic Workshop',
     description: 'RoboGenesis is a robotics workshop organised by the IEEE RGIPT Robotics & Automation Society in association with TechFest, IIT Bombay.',
     fullDescription: 'RoboGenesis is a premier robotics workshop organised by the IEEE RGIPT Robotics & Automation Society in association with TechFest, IIT Bombay. The workshop covers bot design, Arduino basics, and strategies for TechFest robotics competitions, helping participants develop practical robotics skills and explore opportunities to participate in TechFest competitions through wildcard entries.',
@@ -114,7 +114,7 @@ export const EVENTS_DATA = [
       'Chance to get Wildcard Entry in TechFest, IIT Bombay',
       'Official Certificates & IEEE RGIPT Goodies'
     ],
-    registrationOpen: false,
+    registrationOpen: true,
     route: '/events/robogenesis',
     seatsLimited: true,
     registeredSeats: 0,

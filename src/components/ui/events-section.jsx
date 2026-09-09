@@ -13,7 +13,7 @@ const events = [
     color: '#8b5cf6',
     tag: 'TechFest IIT Bombay Partner',
     attendees: 'Hands-on Robotics',
-    timeline: 'Coming Soon',
+    timeline: 'Registration Open',
   },
 ];
 

@@ -39,7 +39,7 @@ const STATIC_EVENTS_MAP = {
     category: 'Workshop',
     partner: 'TechFest, IIT Bombay',
     tagline: 'Build. Learn. Compete. Innovate — One-Day Robotics Workshop',
-    duration: 'Coming Soon',
+    duration: 'One-Day Intensive Workshop',
     banner_url: '/robogenises/ROBOGENESIS.png',
     short_description: 'RoboGenesis is a robotics workshop organised by the IEEE RGIPT Robotics & Automation Society in association with TechFest, IIT Bombay.',
     description: 'RoboGenesis is a premier robotics workshop organised by the IEEE RGIPT Robotics & Automation Society in association with TechFest, IIT Bombay.\n\nThe workshop will cover bot design, Arduino basics, and strategies for TechFest robotics competitions, helping participants develop practical robotics skills and explore opportunities to participate in TechFest competitions through wildcard entries.\n\nOrganized by IEEE RGIPT Student Branch in collaboration with TechFest, IIT Bombay.',
@@ -52,9 +52,9 @@ const STATIC_EVENTS_MAP = {
       'Mentorship from Senior IEEE Robotics Developers'
     ],
     topics: ['Bot Design', 'Arduino Basics', 'Roboreach', 'Meshmerize', 'Thetashift', 'Sensors', 'TechFest IIT Bombay'],
-    registrationDisabled: true,
-    isUpcoming: true,
-    statusNote: 'Registration Opening Soon — Organized in association with TechFest, IIT Bombay.'
+    registrationDisabled: false,
+    isUpcoming: false,
+    statusNote: 'Registration is Open — Organized in association with TechFest, IIT Bombay.'
   },
   'robotics-workshop-2026': {
     slug: 'robogenesis',
@@ -62,7 +62,7 @@ const STATIC_EVENTS_MAP = {
     category: 'Workshop',
     partner: 'TechFest, IIT Bombay',
     tagline: 'Build. Learn. Compete. Innovate — One-Day Robotics Workshop',
-    duration: 'Coming Soon',
+    duration: 'One-Day Intensive Workshop',
     banner_url: '/robogenises/ROBOGENESIS.png',
     short_description: 'RoboGenesis is a robotics workshop organised by the IEEE RGIPT Robotics & Automation Society in association with TechFest, IIT Bombay.',
     description: 'RoboGenesis is a premier robotics workshop organised by the IEEE RGIPT Robotics & Automation Society in association with TechFest, IIT Bombay.\n\nThe workshop will cover bot design, Arduino basics, and strategies for TechFest robotics competitions, helping participants develop practical robotics skills and explore opportunities to participate in TechFest competitions through wildcard entries.\n\nOrganized by IEEE RGIPT Student Branch in collaboration with TechFest, IIT Bombay.',
@@ -75,9 +75,9 @@ const STATIC_EVENTS_MAP = {
       'Mentorship from Senior IEEE Robotics Developers'
     ],
     topics: ['Bot Design', 'Arduino Basics', 'Roboreach', 'Meshmerize', 'Thetashift', 'Sensors', 'TechFest IIT Bombay'],
-    registrationDisabled: true,
-    isUpcoming: true,
-    statusNote: 'Registration Opening Soon — Organized in association with TechFest, IIT Bombay.'
+    registrationDisabled: false,
+    isUpcoming: false,
+    statusNote: 'Registration is Open — Organized in association with TechFest, IIT Bombay.'
   },
   'devwave-2026': {
     slug: 'devwave-2026',

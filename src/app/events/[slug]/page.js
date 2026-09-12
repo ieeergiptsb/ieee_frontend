@@ -14,6 +14,7 @@ import {
   CheckCircle2,
   ExternalLink,
   Loader2,
+  MessageCircle,
 } from "lucide-react";
 
 const navItems = [
@@ -32,6 +33,27 @@ const SLUG_POSTER_MAP = {
   'codenex-3': '/images/posters/codenex.png',
 };
 
+const STATIC_UPDATES_MAP = {
+  'robogenesis': [
+    {
+      _id: 'robogenesis-whatsapp-update',
+      title: 'Official WhatsApp Community Group',
+      short_description: 'Join the official participants WhatsApp group for workshop schedule, bot design resources, competition updates, and TechFest wildcard entry announcements.',
+      link: 'https://chat.whatsapp.com/C5Ypne3xe7A76CVyh9Ksxt',
+      createdAt: new Date().toISOString(),
+    },
+  ],
+  'robotics-workshop-2026': [
+    {
+      _id: 'robogenesis-whatsapp-update',
+      title: 'Official WhatsApp Community Group',
+      short_description: 'Join the official participants WhatsApp group for workshop schedule, bot design resources, competition updates, and TechFest wildcard entry announcements.',
+      link: 'https://chat.whatsapp.com/C5Ypne3xe7A76CVyh9Ksxt',
+      createdAt: new Date().toISOString(),
+    },
+  ],
+};
+
 const STATIC_EVENTS_MAP = {
   'robogenesis': {
     slug: 'robogenesis',
@@ -48,7 +70,6 @@ const STATIC_EVENTS_MAP = {
       'Arduino Basics & Microcontroller Interfacing',
       'Strategies for Roboreach, Meshmerize & Thetashift',
       'Chance to get Wildcard Entry in TechFest, IIT Bombay',
-      'Hands-on Experience with Working Robotic Prototypes',
       'Mentorship from Senior IEEE Robotics Developers'
     ],
     topics: ['Bot Design', 'Arduino Basics', 'Roboreach', 'Meshmerize', 'Thetashift', 'Sensors', 'TechFest IIT Bombay'],
@@ -71,7 +92,6 @@ const STATIC_EVENTS_MAP = {
       'Arduino Basics & Microcontroller Interfacing',
       'Strategies for Roboreach, Meshmerize & Thetashift',
       'Chance to get Wildcard Entry in TechFest, IIT Bombay',
-      'Hands-on Experience with Working Robotic Prototypes',
       'Mentorship from Senior IEEE Robotics Developers'
     ],
     topics: ['Bot Design', 'Arduino Basics', 'Roboreach', 'Meshmerize', 'Thetashift', 'Sensors', 'TechFest IIT Bombay'],
@@ -181,7 +201,13 @@ export default function BootcampEventPage() {
       if (st.registered) {
         setUpdatesLoading(true);
         const u = await bootcampService.getUpdates(slug);
-        if (u.success) setUpdates(u.updates);
+        if (u.success && u.updates && u.updates.length > 0) {
+          setUpdates(u.updates);
+        } else if (STATIC_UPDATES_MAP[slug]) {
+          setUpdates(STATIC_UPDATES_MAP[slug]);
+        } else {
+          setUpdates([]);
+        }
         setUpdatesLoading(false);
       } else {
         setUpdates([]);
@@ -203,7 +229,13 @@ export default function BootcampEventPage() {
       setRegistered(true);
       setUpdatesLoading(true);
       const u = await bootcampService.getUpdates(slug);
-      if (u.success) setUpdates(u.updates);
+      if (u.success && u.updates && u.updates.length > 0) {
+        setUpdates(u.updates);
+      } else if (STATIC_UPDATES_MAP[slug]) {
+        setUpdates(STATIC_UPDATES_MAP[slug]);
+      } else {
+        setUpdates([]);
+      }
       setUpdatesLoading(false);
     } else {
       setToast(r.error || "Could not register");
@@ -428,25 +460,59 @@ export default function BootcampEventPage() {
                 <p className="text-white/50 text-sm">No updates posted yet.</p>
               ) : (
                 <ul className="space-y-4">
-                  {updates.map((u) => (
-                    <li
-                      key={u._id}
-                      className="p-4 rounded-xl bg-black/40 border border-white/10"
-                    >
-                      <h4 className="font-medium text-white">{u.title}</h4>
-                      {u.short_description && (
-                        <p className="text-white/60 text-sm mt-1">{u.short_description}</p>
-                      )}
-                      <a
-                        href={u.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 mt-3 text-sm text-purple-400 hover:text-purple-300"
+                  {updates.map((u) => {
+                    const isWhatsapp = typeof u.link === 'string' && u.link.includes('whatsapp.com');
+                    return (
+                      <li
+                        key={u._id}
+                        className={`p-5 rounded-2xl border transition-all ${
+                          isWhatsapp
+                            ? 'bg-gradient-to-r from-emerald-950/40 via-green-950/20 to-black/60 border-emerald-500/30 shadow-lg shadow-emerald-950/20'
+                            : 'p-4 rounded-xl bg-black/40 border border-white/10'
+                        }`}
                       >
-                        Open resource <ExternalLink className="w-4 h-4" />
-                      </a>
-                    </li>
-                  ))}
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                          <div className="space-y-1.5">
+                            <div className="flex flex-wrap items-center gap-2">
+                              {isWhatsapp && (
+                                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/20 border border-emerald-500/40 text-emerald-300">
+                                  <MessageCircle className="w-3.5 h-3.5 text-emerald-400" />
+                                  WhatsApp Community
+                                </span>
+                              )}
+                              <h4 className="font-semibold text-white text-base">{u.title}</h4>
+                            </div>
+                            {u.short_description && (
+                              <p className="text-white/70 text-sm leading-relaxed">{u.short_description}</p>
+                            )}
+                          </div>
+                          <div>
+                            {isWhatsapp ? (
+                              <a
+                                href={u.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium text-sm text-white bg-gradient-to-r from-emerald-600 to-green-500 hover:from-emerald-500 hover:to-green-400 transition-all shadow-md shadow-emerald-950/40 shrink-0"
+                              >
+                                <MessageCircle className="w-4 h-4" />
+                                Join WhatsApp Group
+                                <ExternalLink className="w-3.5 h-3.5 ml-0.5 opacity-80" />
+                              </a>
+                            ) : (
+                              <a
+                                href={u.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 mt-3 text-sm text-purple-400 hover:text-purple-300"
+                              >
+                                Open resource <ExternalLink className="w-4 h-4" />
+                              </a>
+                            )}
+                          </div>
+                        </div>
+                      </li>
+                    );
+                  })}
                 </ul>
               )}
             </section>

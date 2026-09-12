@@ -12,7 +12,7 @@ const events = [
     route: '/events/robogenesis',
     color: '#8b5cf6',
     tag: 'TechFest IIT Bombay Partner',
-    attendees: 'Hands-on Robotics',
+    attendees: 'Robotics Workshop',
     timeline: 'Registration Open',
   },
 ];

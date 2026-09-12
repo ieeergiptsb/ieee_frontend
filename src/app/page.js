@@ -45,7 +45,7 @@ const announcements = [
     title: "RoboGenesis — National Robotics Workshop",
     description: "RoboGenesis is a robotics workshop organised by the IEEE RGIPT Robotics & Automation Society in association with TechFest, IIT Bombay.",
     description2: "The workshop will cover bot design, Arduino basics, and strategies for TechFest robotics competitions, helping participants develop practical robotics skills and explore opportunities to participate in TechFest competitions through wildcard entries.",
-    tags: ["Bot Design", "Arduino Basics", "TechFest IIT Bombay Wildcard", "Hands-On Prototyping"],
+    tags: ["Bot Design", "Arduino Basics", "TechFest IIT Bombay Wildcard", "Competition Strategies"],
     primaryButton: { text: "Explore RoboGenesis", href: "/events/robogenesis" },
     secondaryButton: { text: "View Details", href: "/events/robogenesis" }
   },

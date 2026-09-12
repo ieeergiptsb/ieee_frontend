@@ -668,16 +668,27 @@ const Dashboard = () => {
             {/* Profile Card */}
             <div className="card p-6">
               <div className="flex flex-col items-center text-center">
-                <div className="relative w-20 h-20 rounded-full overflow-hidden border border-white/10 mb-4 group">
-                  <img
-                    src={user.profile_image_url || "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80"}
-                    alt="Profile"
-                    className="w-full h-full object-cover"
-                    onError={(e) => { e.target.src = "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80" }}
-                  />
+                <div className="relative w-20 h-20 rounded-full overflow-hidden border border-white/10 mb-4 group bg-white/5 flex items-center justify-center">
+                  {user.profile_image_url ? (
+                    <img
+                      src={user.profile_image_url}
+                      alt="Profile"
+                      className="w-full h-full object-cover"
+                      onError={(e) => { e.target.style.display = 'none'; }}
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-white/5 flex items-center justify-center text-white/40 font-semibold text-lg">
+                      {user.full_name ? (
+                        user.full_name.split(' ').filter(Boolean).map(n => n[0]).join('').toUpperCase().slice(0, 2)
+                      ) : (
+                        <User className="w-8 h-8 text-white/30" />
+                      )}
+                    </div>
+                  )}
                   <button
                     onClick={handleOpenProfileForm}
                     className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"
+                    title="Upload profile picture"
                   >
                     <ImageIcon className="w-5 h-5 text-white" />
                   </button>

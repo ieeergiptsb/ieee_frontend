@@ -44,7 +44,7 @@ export const TeamCard = ({ member }) => {
     : (teamImagesMap[member.name] || teamImagesMap[firstName]);
   const imageSource = (member.hideImage || isAnonymous)
     ? null
-    : (member.image || staticImage || `https://ui-avatars.com/api/?background=111827&color=fff&size=256&name=${encodeURIComponent(member.name)}`);
+    : (member.image || staticImage || null);
 
   return (
     <motion.div

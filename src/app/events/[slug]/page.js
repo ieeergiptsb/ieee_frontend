@@ -380,15 +380,6 @@ export default function BootcampEventPage() {
           </section>
         )}
 
-        {event.roadmap && (
-          <section className="mb-12">
-            <h2 className="text-xl font-semibold mb-4">Learning roadmap</h2>
-            <pre className="whitespace-pre-wrap text-white/75 font-sans text-sm leading-relaxed bg-white/5 border border-white/10 rounded-xl p-6">
-              {event.roadmap}
-            </pre>
-          </section>
-        )}
-
         <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-8 mb-16">
           {event.registrationDisabled ? (
             event.isCompleted ? (

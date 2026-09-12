@@ -208,8 +208,8 @@ const ContactPage = () => {
               <ContactInfoCard 
                 icon={Phone}
                 title="Call Us"
-                value="+91 7870304944"
-                href="tel:+917870304944"
+                value="+91 7887226006"
+                href="tel:+917887226006"
                 delay={200}
               />
               <ContactInfoCard 

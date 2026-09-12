@@ -135,16 +135,16 @@ const Footer = () => {
               <li className="flex items-start gap-3">
                 <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-white/60 mt-0.5 flex-shrink-0" />
                 <a
-                  href="tel:+917870304944"
+                  href="tel:+917887226006"
                   className="text-xs sm:text-sm text-white/60 hover:text-white transition-colors"
                 >
-                  +91 7870304944
+                  +91 7887226006
                 </a>
               </li>
               <li className="flex items-start gap-3">
                 <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5 text-white/60 mt-0.5 flex-shrink-0" />
                 <a
-                  href="https://wa.me/917870304944"
+                  href="https://wa.me/917887226006"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-xs sm:text-sm text-white/60 hover:text-white transition-colors"

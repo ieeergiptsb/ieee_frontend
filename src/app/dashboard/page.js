@@ -164,8 +164,7 @@ const ProfileUpdateModal = ({ formData, setFormData, profilePictureFile, setProf
                value={formData.designation || ''} 
                onChange={(e) => setFormData({...formData, designation: e.target.value})}
                className="w-full mt-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-purple-500/50 transition-colors"
-               placeholder="e.g. Technical Lead"
-               required
+               placeholder="e.g. Technical Lead (optional)"
              />
           </div>
           <div>
@@ -231,7 +230,7 @@ const ProfileUpdateModal = ({ formData, setFormData, profilePictureFile, setProf
   );
 };
 
-const IdCardModal = ({ idCardImage, loading, error, onClose, onDownload }) => {
+const IdCardModal = ({ idCardImage, loading, error, onClose, onDownload, onUploadPhoto }) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm p-4">
       <div className="glass-panel border border-white/10 rounded-xl p-6 max-w-md w-full">
@@ -242,7 +241,20 @@ const IdCardModal = ({ idCardImage, loading, error, onClose, onDownload }) => {
           <button onClick={onClose} className="text-white/60 hover:text-white transition-colors"><X className="w-5 h-5" /></button>
         </div>
 
-        {error && <div className="mb-4 p-3 rounded-lg bg-red-500/20 text-red-300 text-sm">{error}</div>}
+        {error && (
+          <div className="mb-4 p-4 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-200 text-sm space-y-3">
+            <p>{error}</p>
+            {onUploadPhoto && (
+              <button
+                type="button"
+                onClick={onUploadPhoto}
+                className="w-full py-2 px-3 bg-white/10 hover:bg-white/20 text-white border border-white/20 rounded-lg text-xs font-semibold transition-colors flex items-center justify-center gap-1.5"
+              >
+                <Edit className="w-3.5 h-3.5" /> Upload Profile Picture
+              </button>
+            )}
+          </div>
+        )}
 
         {loading ? (
           <div className="flex flex-col items-center justify-center py-12">
@@ -455,9 +467,16 @@ const Dashboard = () => {
 
   const handleShowIdCard = async () => {
     setShowIdCard(true);
-    setIdCardLoading(true);
     setIdCardImage(null);
     setError('');
+
+    if (!user?.profile_image_url) {
+      setIdCardLoading(false);
+      setError('Profile photo is required to generate your IEEE ID card. Please upload a profile picture to view and download your ID card.');
+      return;
+    }
+
+    setIdCardLoading(true);
 
     try {
       const token = authService.getToken();
@@ -513,7 +532,7 @@ const Dashboard = () => {
     );
   }
 
-  const isIEEEMember = user.role === 'ieee_member';
+  const isIEEEMember = user.membership_type === 'ieee_member' || user.role === 'ieee_member';
   const stats = dashboardData.stats || {};
 
   return (
@@ -763,9 +782,13 @@ const Dashboard = () => {
           error={error}
           onClose={() => setShowIdCard(false)}
           onDownload={handleDownloadIdCard}
+          onUploadPhoto={() => {
+            setShowIdCard(false);
+            handleOpenProfileForm();
+          }}
         />
       )}
-      {showProfileForm && isIEEEMember && (
+      {showProfileForm && (
         <ProfileUpdateModal
           formData={profileFormData}
           setFormData={setProfileFormData}

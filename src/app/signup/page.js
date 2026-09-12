@@ -77,6 +77,11 @@ export default function SignupPage() {
     }
   };
 
+  const handleRemoveProfilePicture = () => {
+    setProfilePicture(null);
+    setProfilePicturePreview(null);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -150,13 +155,7 @@ export default function SignupPage() {
       return;
     }
 
-    // Profile picture is mandatory
-    if (!profilePicture) {
-      setError('Profile picture is required');
-      setLoading(false);
-      return;
-    }
-
+    // Note: Profile picture is optional; users who don't upload one won't have an ID card generated until they upload one
     // Note: IEEE membership ID will be auto-generated on the backend
     // No need to require membership_code anymore
 
@@ -288,10 +287,21 @@ export default function SignupPage() {
           >
             {/* Profile Picture Upload */}
             <div className="space-y-2">
-              <label htmlFor="profile_picture" className="text-sm uppercase tracking-[0.35em] text-white/60 flex items-center gap-2">
-                <User className="w-4 h-4" />
-                Profile Picture <span className="text-red-400">*</span> (Max 1MB)
-              </label>
+              <div className="flex items-center justify-between">
+                <label htmlFor="profile_picture" className="text-sm uppercase tracking-[0.35em] text-white/60 flex items-center gap-2">
+                  <User className="w-4 h-4" />
+                  Profile Picture <span className="text-white/40 text-xs tracking-normal font-normal lowercase">(optional)</span>
+                </label>
+                {profilePicture && (
+                  <button
+                    type="button"
+                    onClick={handleRemoveProfilePicture}
+                    className="text-xs text-red-400 hover:text-red-300 transition-colors uppercase tracking-wider font-medium"
+                  >
+                    Remove
+                  </button>
+                )}
+              </div>
               <div className="flex items-center gap-4">
                 <label 
                   htmlFor="profile_picture" 
@@ -328,7 +338,7 @@ export default function SignupPage() {
                   </div>
                 )}
               </div>
-              <p className="text-xs text-white/50">Max file size: 5MB. Supported formats: JPEG, PNG, GIF, WebP</p>
+              <p className="text-xs text-white/50">Optional: Upload a photo to generate your official IEEE ID card. (Max 1MB, JPEG, PNG, GIF, WebP)</p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-6">

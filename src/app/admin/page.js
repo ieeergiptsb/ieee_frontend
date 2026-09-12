@@ -21,7 +21,7 @@ import {
   Loader2, Check, BarChart3,
   UserCheck, Clock, X, Database,
   Plus, Trash2, Upload, FileUp, Mail, Bell, Image as ImageIcon,
-  ChevronDown
+  ChevronDown, LogOut
 } from 'lucide-react';
 
 // StatCard component
@@ -1119,6 +1119,10 @@ const AdminDashboard = () => {
     }
   };
 
+  const handleLogout = async () => {
+    await authService.logout();
+    router.push('/');
+  };
 
   if (loading) {
     return (
@@ -1165,10 +1169,42 @@ const AdminDashboard = () => {
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '96px 24px 48px' }}>
 
         {/* Header */}
-        <div style={{ marginBottom: '32px', paddingBottom: '24px', borderBottom: '1px solid #1a1a1a' }}>
-          <p style={{ fontSize: '11px', color: '#444', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '4px' }}>Admin Panel</p>
-          <h1 style={{ fontSize: '22px', fontWeight: '600', color: '#fff' }}>Dashboard</h1>
-          <p style={{ fontSize: '13px', color: '#555', marginTop: '2px' }}>Manage users, events, and registrations</p>
+        <div style={{ marginBottom: '32px', paddingBottom: '24px', borderBottom: '1px solid #1a1a1a', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '16px', flexWrap: 'wrap' }}>
+          <div>
+            <p style={{ fontSize: '11px', color: '#444', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '4px' }}>Admin Panel</p>
+            <h1 style={{ fontSize: '22px', fontWeight: '600', color: '#fff' }}>Dashboard</h1>
+            <p style={{ fontSize: '13px', color: '#555', marginTop: '2px' }}>Manage users, events, and registrations</p>
+          </div>
+          <button
+            onClick={handleLogout}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              padding: '8px 16px',
+              borderRadius: '8px',
+              border: '1px solid #222',
+              background: '#111',
+              color: '#888',
+              fontSize: '13px',
+              fontWeight: '500',
+              cursor: 'pointer',
+              transition: 'all 0.2s ease',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = 'rgba(239, 68, 68, 0.4)';
+              e.currentTarget.style.color = '#ef4444';
+              e.currentTarget.style.background = 'rgba(239, 68, 68, 0.08)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = '#222';
+              e.currentTarget.style.color = '#888';
+              e.currentTarget.style.background = '#111';
+            }}
+          >
+            <LogOut style={{ width: '15px', height: '15px' }} />
+            <span>Sign out</span>
+          </button>
         </div>
 
         {/* Stats */}

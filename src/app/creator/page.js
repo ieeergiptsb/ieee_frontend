@@ -110,13 +110,13 @@ const CodeWindow = ({ name, role, handle, image, type, skills, socialLinks, dela
         <div className="w-8" /> {/* Spacer */}
       </div>
 
-      <div className="p-6 grid md:grid-cols-[1.5fr_2fr] gap-8">
+      <div className="p-6 grid sm:grid-cols-[1.2fr_1.8fr] gap-6 md:gap-8">
         {/* Avatar & Quick Stats */}
         <div className="flex flex-col items-center text-center space-y-4">
-          <div className="relative w-32 h-32 md:w-40 md:h-40">
+          <div className="relative w-32 h-32 md:w-36 md:h-36">
             <div className={`absolute inset-0 rounded-full border-2 border-dashed ${isFrontend ? 'border-cyan-500/50' : 'border-emerald-500/50'} animate-[spin_10s_linear_infinite]`} />
             <div className="absolute inset-2 rounded-full overflow-hidden bg-zinc-800">
-              <img src={image} alt={name} className="w-full h-full object-cover" />
+              <img src={image} alt={name} className="w-full h-full object-cover object-top" />
             </div>
             <div className={`absolute bottom-2 right-2 w-4 h-4 rounded-full border-2 border-[#0d1117] ${isFrontend ? 'bg-cyan-400' : 'bg-emerald-400'} animate-pulse`} />
           </div>
@@ -222,23 +222,39 @@ export default function CreatorPage() {
         <section className="pt-32 pb-16 px-4 text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 mb-6 font-code text-xs text-purple-300 animate-slide-up">
             <Command className="w-3 h-3" />
-            <span>git commit -m "Creator"</span>
+            <span>git commit -m "Creators"</span>
           </div>
           
           <h1 className="text-5xl md:text-7xl font-black tracking-tighter mb-6 animate-slide-up" style={{ animationDelay: '100ms' }}>
-            MEET THE <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">ARCHITECT</span>
+            MEET THE <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">ARCHITECTS</span>
           </h1>
           
           <p className="text-white/60 text-lg max-w-2xl mx-auto leading-relaxed font-code animate-slide-up" style={{ animationDelay: '200ms' }}>
-            // The mind behind the interface. <br/>
+            // The minds behind the interface. <br/>
             // Crafting digital experiences with code and creativity.
           </p>
         </section>
 
         {/* Developers Grid */}
         <section className="px-4 sm:px-6 lg:px-8 pb-32">
-          <div className="max-w-4xl mx-auto flex justify-center">
+          <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 justify-center">
             
+            {/* Full Stack Developer - Arjav Jain */}
+            <CodeWindow 
+              name="Arjav Jain"
+              role="Full Stack Developer"
+              handle="arjav_fullstack.js"
+              image="/images/arjav.jpeg"
+              type="frontend"
+              delay={200}
+              skills={["React", "Next.js", "Node.js", "Express", "Tailwind", "FastAPI", "Flask", "MongoDB", "PostgreSQL", "CI/CD", "Docker"]}
+              socialLinks={{
+                github: "https://github.com/jainarjav80-sys",
+                linkedin: "https://www.linkedin.com/in/arjav-jain-9a5199328/",
+                email: "jainarjav80@gmail.com"
+              }}
+            />
+
             {/* Full Stack Developer - Shashank */}
             <CodeWindow 
               name="Shashank"
@@ -246,7 +262,7 @@ export default function CreatorPage() {
               handle="shashank_fullstack.js"
               image="/images/shashank.png"
               type="backend"
-              delay={300}
+              delay={350}
               skills={["React", "Next.js", "Node.js", "Express", "MongoDB", "Tailwind", "Three.js", "JWT", "SendGrid"]}
               socialLinks={{
                 github: "https://github.com/shashank7109",

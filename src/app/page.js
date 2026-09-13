@@ -593,46 +593,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Membership CTA - Reduced padding and tighter internal spacing */}
-        <section className="w-full py-6 sm:py-8 md:py-12 px-4 sm:px-6 md:px-8 lg:px-12">
-        <div className="max-w-5xl mx-auto rounded-2xl md:rounded-3xl border border-white/15 bg-white/5 p-6 md:p-8 space-y-4 md:space-y-6 text-center">
-            <p className="text-xs sm:text-sm uppercase tracking-[0.4em] md:tracking-[0.5em] text-white/60">
-              Become A Member
-            </p>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold">
-              Access perks, labs, and the IEEE RGIPT portal
-            </h2>
-            <p className="text-white/70 text-base max-w-3xl mx-auto">
-              Join us to unlock chapter-specific mentorship, lab reservations,
-              and the unified payment portal (₹2200 via Razorpay) that keeps
-              your membership active across all societies.
-            </p> 
-            <div className="flex flex-col sm:flex-row gap-3 justify-center pt-2">
-              <Link
-                href="/membership"
-                className="px-6 py-3 md:px-8 md:py-4 rounded-xl md:rounded-2xl bg-gradient-to-r from-purple-500 to-blue-500 font-semibold text-base text-white shadow-lg shadow-purple-500/40 hover:scale-[1.02] transition"
-              >
-                View Perks & Join
-              </Link>
-              <Link
-                href="/signin"
-                className="px-6 py-3 md:px-8 md:py-4 rounded-xl md:rounded-2xl border border-white/30 text-base text-white/90 hover:text-white hover:border-white/60 transition"
-              >
-                Sign In
-              </Link>
-              <Link
-                href="/signup"
-                className="px-6 py-3 md:px-8 md:py-4 rounded-xl md:rounded-2xl border border-white/30 text-base text-white/90 hover:text-white hover:border-white/60 transition"
-              >
-                Sign Up
-              </Link>
-            </div>
-            <p className="text-xs text-white/60 pt-2">
-              Secure Razorpay payments, instant receipts, and member dashboard
-              access the moment your ₹2200 fee is confirmed.
-            </p>
-          </div>
-        </section>
 
         {/* Sponsors Section - Infinite scrolling */}
         <SponsorsSection sponsors={sponsorsData} />

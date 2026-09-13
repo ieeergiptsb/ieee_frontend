@@ -12,7 +12,6 @@ const Footer = () => {
     { label: "Events", href: "/events" },
     { label: "Team", href: "/team" },
     { label: "Contact", href: "/contact" },
-    { label: "Membership", href: "/membership" },
   ];
 
   const chapters = [

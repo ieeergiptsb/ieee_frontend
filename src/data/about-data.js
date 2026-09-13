@@ -44,7 +44,7 @@ export const HERO = {
   title: "Engineering the future, together.",
   subtitle:
     "A collective of innovators, builders, and leaders at Rajiv Gandhi Institute of Petroleum Technology - advancing technology for humanity since 2010.",
-  primaryCta: { label: "Join IEEE RGIPT", href: "/membership" },
+  primaryCta: { label: "Join IEEE RGIPT", href: "/contact" },
   secondaryCta: { label: "Meet the Team", href: "/team" },
   stats: [
     { value: "300+", label: "Members" },
@@ -179,6 +179,6 @@ export const CTA = {
   title: "Shape the future with us",
   description:
     "Join a community that values innovation and impact. Your journey with IEEE RGIPT starts here.",
-  primaryCta: { label: "Join IEEE RGIPT", href: "/membership" },
+  primaryCta: { label: "Join IEEE RGIPT", href: "/contact" },
   secondaryCta: { label: "Meet the Team", href: "/team" },
 };

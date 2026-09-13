@@ -106,8 +106,7 @@ export default function SigninPage() {
           <p className="text-xs uppercase tracking-[0.65em] text-white/60">Member login</p>
           <h1 className="text-4xl font-semibold">Access your IEEE portal</h1>
           <p className="text-white/70">
-            Sign in to review membership status, download invoices, and resume the payment flow once Razorpay is
-            connected.
+            Sign in to access your IEEE dashboard, manage event registrations, and view your profile.
           </p>
         </div>
 

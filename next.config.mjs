@@ -53,6 +53,16 @@ const nextConfig = {
       { source: '/:path*.woff2', headers: [{ key: 'Cache-Control', value: 'public, max-age=2592000, stale-while-revalidate=86400' }] },
     ];
   },
+
+  async redirects() {
+    return [
+      {
+        source: '/membership',
+        destination: '/contact',
+        permanent: false,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

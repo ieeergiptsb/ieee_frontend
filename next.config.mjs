@@ -61,6 +61,16 @@ const nextConfig = {
         destination: '/contact',
         permanent: false,
       },
+      {
+        source: '/maintainer',
+        destination: '/creator',
+        permanent: false,
+      },
+      {
+        source: '/developers',
+        destination: '/creator',
+        permanent: false,
+      },
     ];
   },
 };

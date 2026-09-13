@@ -69,7 +69,7 @@ const Footer = () => {
                         href="/creator"
                         className="px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg bg-gradient-to-r from-purple-600 to-blue-600 text-white text-xs sm:text-sm font-semibold animate-pulse hover:animate-none hover:from-purple-500 hover:to-blue-500 transition-all inline-block"
                       >
-                        Created by
+                        Creators & Maintainers
                       </Link>
                     )}
                   </div>

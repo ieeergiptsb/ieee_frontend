@@ -84,12 +84,15 @@ const BinaryBackground = () => (
   </div>
 );
 
-const CodeWindow = ({ name, role, handle, image, type, skills, socialLinks, delay }) => {
-  const isFrontend = type === 'frontend';
-  const accentColor = isFrontend ? 'text-cyan-400' : 'text-emerald-400';
-  const borderColor = isFrontend ? 'border-cyan-500/30' : 'border-emerald-500/30';
-  const glowColor = isFrontend ? 'group-hover:shadow-cyan-500/20' : 'group-hover:shadow-emerald-500/20';
-  const Icon = isFrontend ? Layout : Database;
+const CodeWindow = ({ name, role, badge, handle, image, type, skills, socialLinks, delay }) => {
+  const isMaintainer = type === 'maintainer' || type === 'frontend';
+  const accentColor = isMaintainer ? 'text-cyan-400' : 'text-emerald-400';
+  const borderColor = isMaintainer ? 'border-cyan-500/30' : 'border-emerald-500/30';
+  const glowColor = isMaintainer ? 'group-hover:shadow-cyan-500/20' : 'group-hover:shadow-emerald-500/20';
+  const badgeStyle = isMaintainer 
+    ? 'bg-cyan-500/10 text-cyan-300 border-cyan-500/30' 
+    : 'bg-purple-500/10 text-purple-300 border-purple-500/30';
+  const Icon = isMaintainer ? Layout : Database;
 
   return (
     <div 
@@ -107,33 +110,44 @@ const CodeWindow = ({ name, role, handle, image, type, skills, socialLinks, dela
           <Icon className="w-3 h-3" />
           {handle}
         </div>
-        <div className="w-8" /> {/* Spacer */}
+        <div className="flex items-center">
+          {badge && (
+            <span className={`text-[10px] uppercase font-code tracking-wider px-2 py-0.5 rounded-full border ${badgeStyle}`}>
+              {badge}
+            </span>
+          )}
+        </div>
       </div>
 
       <div className="p-6 grid sm:grid-cols-[1.2fr_1.8fr] gap-6 md:gap-8">
         {/* Avatar & Quick Stats */}
         <div className="flex flex-col items-center text-center space-y-4">
           <div className="relative w-32 h-32 md:w-36 md:h-36">
-            <div className={`absolute inset-0 rounded-full border-2 border-dashed ${isFrontend ? 'border-cyan-500/50' : 'border-emerald-500/50'} animate-[spin_10s_linear_infinite]`} />
+            <div className={`absolute inset-0 rounded-full border-2 border-dashed ${isMaintainer ? 'border-cyan-500/50' : 'border-emerald-500/50'} animate-[spin_10s_linear_infinite]`} />
             <div className="absolute inset-2 rounded-full overflow-hidden bg-zinc-800">
               <img src={image} alt={name} className="w-full h-full object-cover object-top" />
             </div>
-            <div className={`absolute bottom-2 right-2 w-4 h-4 rounded-full border-2 border-[#0d1117] ${isFrontend ? 'bg-cyan-400' : 'bg-emerald-400'} animate-pulse`} />
+            <div className={`absolute bottom-2 right-2 w-4 h-4 rounded-full border-2 border-[#0d1117] ${isMaintainer ? 'bg-cyan-400' : 'bg-emerald-400'} animate-pulse`} />
           </div>
           
-          <div>
+          <div className="space-y-1.5">
             <h3 className="text-2xl font-bold text-white">{name}</h3>
-            <p className={`${accentColor} text-sm font-code mt-1`}>&lt;{role} /&gt;</p>
+            <p className={`${accentColor} text-sm font-code`}>&lt;{role} /&gt;</p>
+            {badge && (
+              <span className={`inline-block text-[10px] uppercase font-code tracking-wider px-2.5 py-0.5 rounded-full border ${badgeStyle}`}>
+                {badge}
+              </span>
+            )}
           </div>
 
           <div className="flex gap-3">
             {socialLinks.github && (
-              <a href={socialLinks.github} className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-white transition-colors">
+              <a href={socialLinks.github} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-white transition-colors">
                 <Github className="w-5 h-5" />
               </a>
             )}
             {socialLinks.linkedin && (
-              <a href={socialLinks.linkedin} className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-blue-400 transition-colors">
+              <a href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-blue-400 transition-colors">
                 <Linkedin className="w-5 h-5" />
               </a>
             )}
@@ -145,23 +159,23 @@ const CodeWindow = ({ name, role, handle, image, type, skills, socialLinks, dela
 
         {/* Code Block Info */}
         <div className="font-code text-sm overflow-hidden">
-          <div className="text-gray-500 mb-2">// Developer Profile Configuration</div>
+          <div className="text-gray-500 mb-2">// Profile Configuration</div>
           <div className="space-y-1">
             <div className="flex">
               <span className="text-purple-400 mr-2">const</span>
-              <span className="text-yellow-200 mr-2">developer</span>
+              <span className="text-yellow-200 mr-2">contributor</span>
               <span className="text-white mr-2">=</span>
               <span className="text-white">{'{'}</span>
             </div>
             
             <div className="pl-4 flex">
-              <span className="text-blue-300 mr-2">status:</span>
-              <span className="text-green-300">"Online"</span>,
+              <span className="text-blue-300 mr-2">role:</span>
+              <span className="text-green-300">"{badge || role}"</span>,
             </div>
             
             <div className="pl-4 flex">
-              <span className="text-blue-300 mr-2">level:</span>
-              <span className="text-orange-300">99</span>,
+              <span className="text-blue-300 mr-2">status:</span>
+              <span className="text-green-300">"Online"</span>,
             </div>
 
             <div className="pl-4">
@@ -191,7 +205,7 @@ const CodeWindow = ({ name, role, handle, image, type, skills, socialLinks, dela
           {/* Terminal Prompt */}
           <div className="mt-6 pt-4 border-t border-white/10 flex items-center gap-2 text-xs text-white/50">
             <Terminal className="w-4 h-4" />
-            <span>{isFrontend ? 'compiling assets...' : 'connecting to server...'}</span>
+            <span>{isMaintainer ? 'maintaining & deploying systems...' : 'building core architecture...'}</span>
             <span className="w-2 h-4 bg-white/50 animate-cursor" />
           </div>
         </div>
@@ -222,16 +236,16 @@ export default function CreatorPage() {
         <section className="pt-32 pb-16 px-4 text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 mb-6 font-code text-xs text-purple-300 animate-slide-up">
             <Command className="w-3 h-3" />
-            <span>git commit -m "Creators"</span>
+            <span>git log --author="Creator & Maintainer"</span>
           </div>
           
-          <h1 className="text-5xl md:text-7xl font-black tracking-tighter mb-6 animate-slide-up" style={{ animationDelay: '100ms' }}>
-            MEET THE <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">ARCHITECTS</span>
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter mb-6 animate-slide-up" style={{ animationDelay: '100ms' }}>
+            MEET THE <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-cyan-400">ARCHITECT & MAINTAINER</span>
           </h1>
           
-          <p className="text-white/60 text-lg max-w-2xl mx-auto leading-relaxed font-code animate-slide-up" style={{ animationDelay: '200ms' }}>
-            // The minds behind the interface. <br/>
-            // Crafting digital experiences with code and creativity.
+          <p className="text-white/60 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed font-code animate-slide-up" style={{ animationDelay: '200ms' }}>
+            // Shashank: Built the original foundation & core architecture. <br/>
+            // Arjav Jain: Actively maintains, updates, and powers the platform forward.
           </p>
         </section>
 
@@ -239,37 +253,51 @@ export default function CreatorPage() {
         <section className="px-4 sm:px-6 lg:px-8 pb-32">
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 justify-center">
             
-            {/* Full Stack Developer - Arjav Jain */}
-            <CodeWindow 
-              name="Arjav Jain"
-              role="Full Stack Developer"
-              handle="arjav_fullstack.js"
-              image="/images/arjav.jpeg"
-              type="frontend"
-              delay={200}
-              skills={["React", "Next.js", "Node.js", "Express", "Tailwind", "FastAPI", "Flask", "MongoDB", "PostgreSQL", "CI/CD", "Docker"]}
-              socialLinks={{
-                github: "https://github.com/jainarjav80-sys",
-                linkedin: "https://www.linkedin.com/in/arjav-jain-9a5199328/",
-                email: "jainarjav80@gmail.com"
-              }}
-            />
+            {/* Creator & Architect - Shashank */}
+            <div>
+              <div className="flex items-center gap-2 text-xs font-code text-purple-300/80 mb-3 pl-1 uppercase tracking-wider">
+                <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
+                <span>[01 // Initial Architecture & Creation]</span>
+              </div>
+              <CodeWindow 
+                name="Shashank"
+                role="Creator & Architect"
+                badge="Original Creator"
+                handle="shashank_creator.js"
+                image="/images/shashank.png"
+                type="backend"
+                delay={200}
+                skills={["React", "Next.js", "Node.js", "Express", "MongoDB", "Tailwind", "Three.js", "JWT", "SendGrid"]}
+                socialLinks={{
+                  github: "https://github.com/shashank7109",
+                  linkedin: "https://linkedin.com/in/shashankbindal07",
+                  email: "bindalshashank.89@gmail.com"
+                }}
+              />
+            </div>
 
-            {/* Full Stack Developer - Shashank */}
-            <CodeWindow 
-              name="Shashank"
-              role="Full Stack Developer"
-              handle="shashank_fullstack.js"
-              image="/images/shashank.png"
-              type="backend"
-              delay={350}
-              skills={["React", "Next.js", "Node.js", "Express", "MongoDB", "Tailwind", "Three.js", "JWT", "SendGrid"]}
-              socialLinks={{
-                github: "https://github.com/shashank7109",
-                linkedin: "https://linkedin.com/in/shashankbindal07",
-                email: "bindalshashank.89@gmail.com"
-              }}
-            />
+            {/* Maintainer - Arjav Jain */}
+            <div>
+              <div className="flex items-center gap-2 text-xs font-code text-cyan-300/80 mb-3 pl-1 uppercase tracking-wider">
+                <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+                <span>[02 // Active Maintenance & Development]</span>
+              </div>
+              <CodeWindow 
+                name="Arjav Jain"
+                role="Website Maintainer"
+                badge="Website Maintainer"
+                handle="arjav_maintainer.js"
+                image="/images/arjav.jpeg"
+                type="maintainer"
+                delay={350}
+                skills={["React", "Next.js", "Node.js", "Express", "Tailwind", "FastAPI", "Flask", "MongoDB", "PostgreSQL", "CI/CD", "Docker"]}
+                socialLinks={{
+                  github: "https://github.com/jainarjav80-sys",
+                  linkedin: "https://www.linkedin.com/in/arjav-jain-9a5199328/",
+                  email: "jainarjav80@gmail.com"
+                }}
+              />
+            </div>
 
           </div>
         </section>

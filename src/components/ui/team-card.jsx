@@ -33,7 +33,7 @@ export const TeamCard = ({ member }) => {
   const isAnonymous = member.hideIdentity || !member.name;
 
   // Resolve link to profile or LinkedIn
-  const profileUrl = isAnonymous
+  const profileUrl = isAnonymous || member.disableProfile
     ? null
     : (member.slug ? `/team/${member.slug}` : (member.linkedin || null));
   
@@ -52,7 +52,7 @@ export const TeamCard = ({ member }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.7, ease: [0.19, 1, 0.22, 1] }}
-      className="w-full aspect-[3/4] max-w-sm mx-auto relative w-full h-full overflow-hidden rounded-[2.5rem] bg-neutral-900 border border-white/10 hover:border-white/30 group transform-gpu transition-all duration-500 hover:shadow-[0_0_40px_-10px_rgba(236,72,153,0.3)]"
+      className="relative w-full h-full overflow-hidden rounded-[2.5rem] bg-neutral-900 border border-white/10 hover:border-white/30 group transform-gpu transition-all duration-500 hover:shadow-[0_0_40px_-10px_rgba(236,72,153,0.3)]"
     >
       {/* Stretched Link for the entire card (acting as the main click target without nesting other links) */}
       {profileUrl && (
@@ -104,10 +104,12 @@ export const TeamCard = ({ member }) => {
                 {member.name}
               </h3>
             ) : null}
-            <p className="text-sm font-normal text-white/60 tracking-wide uppercase">
-              {member.position}
-            </p>
-            {member.team && (
+            {member.position ? (
+              <p className="text-sm font-normal text-white/60 tracking-wide uppercase">
+                {member.position}
+              </p>
+            ) : null}
+            {member.team && !member.hideTeam && (
               <span className="text-[10px] font-medium text-white/40 tracking-widest uppercase mt-1">
                 {member.team}
               </span>

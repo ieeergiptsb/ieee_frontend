@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef, useMemo } from "react";
 import { 
   Users, Code, Cpu, Bot, Sparkles, Radio, Wrench, 
   FileText, Palette, Shield, PenTool, Calendar, Network, 
-  Search, SlidersHorizontal, Award
+  Search, SlidersHorizontal, Award, GraduationCap
 } from "lucide-react";
 import { TEAM_STRUCTURE } from "@/data/team-structure";
 import { generateSlug } from "@/data/team-data";
@@ -72,9 +72,31 @@ export const TeamPage = () => {
   const structuredMembers = useMemo(() => {
     const list = [];
 
-    // 1. Executive Officers (Leadership)
+    // 1. Faculty / Professors
+    (TEAM_STRUCTURE.professors || []).forEach((professor, index) => {
+      list.push({
+        id: `professor-${index}`,
+        name: professor.name,
+        position: "",
+        email: "",
+        image: professor.image,
+        linkedin: "",
+        github: "",
+        instagram: "",
+        bio: "",
+        achievements: "",
+        team: "Professors",
+        hideTeam: true,
+        category: "leadership",
+        slug: null,
+        disableProfile: true,
+        order: 0
+      });
+    });
+
+    // 2. Executive Officers (Leadership)
     TEAM_STRUCTURE.executive_officers.forEach(officer => {
-      const backendData = memberDataMap[officer.email.toLowerCase()];
+      const backendData = officer.email ? memberDataMap[officer.email.toLowerCase()] : null;
       list.push({
         name: officer.name,
         position: officer.position,
@@ -92,7 +114,7 @@ export const TeamPage = () => {
       });
     });
 
-    // 2. Society and Committee Teams
+    // 3. Society and Committee Teams
     Object.keys(TEAM_STRUCTURE.teams).forEach(teamKey => {
       const team = TEAM_STRUCTURE.teams[teamKey];
       const isTech = ["CS", "COMSOC", "WIE", "RAS", "CNM"].includes(teamKey);
@@ -320,11 +342,16 @@ export const TeamPage = () => {
             {Object.keys(filteredMembersByTeam).map((teamName) => {
               // Find the configuration matching the current team
               const isExec = teamName === "Leaders";
+              const isFaculty = teamName === "Professors";
               const key = Object.keys(teamConfig).find(k => teamConfig[k].title === teamName) || teamName;
               const config = teamConfig[key] || {
-                icon: Users,
+                icon: isFaculty ? GraduationCap : Users,
                 title: teamName,
-                description: isExec ? "Guiding the branch with strategic leadership and operational excellence." : "Branch working committee."
+                description: isFaculty
+                  ? "Faculty mentors guiding IEEE Student Branch, RGIPT."
+                  : isExec
+                    ? "Guiding the branch with strategic leadership and operational excellence."
+                    : "Branch working committee."
               };
               const IconComponent = config.icon;
 
@@ -348,14 +375,16 @@ export const TeamPage = () => {
                   </div>
 
                   {/* Members Grid */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 items-start justify-items-center">
                     {filteredMembersByTeam[teamName]
                       .sort((a, b) => a.order - b.order)
                       .map((member) => (
-                        <TeamCard
+                        <div
                           key={member.id || `${member.email}-${member.team}-${member.position}`}
-                          member={member}
-                        />
+                          className="w-full max-w-sm aspect-[3/4]"
+                        >
+                          <TeamCard member={member} />
+                        </div>
                       ))}
                   </div>
                 </div>

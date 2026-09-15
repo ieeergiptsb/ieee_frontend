@@ -1,5 +1,12 @@
 // Team structure data - matches backend structure
 export const TEAM_STRUCTURE = {
+  professors: [
+    { name: "Dr. Vijay Kumar Singh", image: "/team-images/Dr-Vijay-Kumar-Singh.jpg" },
+    { name: "Dr. Amarish Dubey", image: "/team-images/Dr-Amarish-Dubey.jpg" },
+    { name: "Dr. Ankur Pandey", image: "/team-images/Dr-Ankur-Pandey.jpg" },
+    { name: "Dr. Sajal Agarwal", image: "/team-images/Dr-Sajal-Agarwal.jpg" },
+    { name: "Dr. Kalka Dubey", image: "/team-images/Dr-Kalka-Dubey.jpg" }
+  ],
   executive_officers: [
     { position: "Chair", name: "Anagh Krishna Singh", email: "24ev3004@rgipt.ac.in" },
     { position: "Vice Chair", name: "Aadrikaa Gupta", email: "24cd3001@rgipt.ac.in" },

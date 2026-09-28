@@ -16,14 +16,6 @@ const projects = [
     category: 'App Development',
     image: '/project2.png',
     link: 'https://github.com/sys6-exe/SanRaksha',
-  },
-  {
-    id: 3,
-    title: 'Space-Sight',
-    category: 'AI/ML',
-    image: '/project3.png',
-    link: 'https://github.com/Ghxst07/Space-Sight',
-  },
 ];
 
 export default function CSProjects() {

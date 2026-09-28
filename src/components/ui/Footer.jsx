@@ -16,7 +16,7 @@ const Footer = () => {
 
   const chapters = [
     { label: "Robotics & Automation Society", href: "/chapters/ras" },
-    { label: "Computer Society", href: "/chapters/code-club" },
+    { label: "Computer Society", href: "/chapters/cs-society" },
     { label: "Women in Engineering", href: "/chapters/women" },
     { label: "Communication Society", href: "/chapters/comsoc" },
   ];

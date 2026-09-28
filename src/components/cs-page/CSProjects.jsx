@@ -16,6 +16,7 @@ const projects = [
     category: 'App Development',
     image: '/project2.png',
     link: 'https://github.com/sys6-exe/SanRaksha',
+  }
 ];
 
 export default function CSProjects() {

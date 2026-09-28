@@ -6,14 +6,14 @@ import { CometCard } from "@/components/ui/comet-card";
 
 const teamMembers = [
   {
-    name: 'Akash Rai',
-    role: 'Webmaster',
-    image: '/akash_rai.jpeg',
-  },
-  {
     name: 'Arindol Sarkar',
     role: 'CS Secretary',
     image: '/Arindol.jpeg',
+  },
+  {
+    name: 'Akash Rai',
+    role: 'Webmaster',
+    image: '/akash_rai.jpeg',
   },
 ];
 
@@ -32,6 +32,16 @@ const executives = [
     name: 'Sagnik Roy',
     role: 'Executive',
     image: '/sagnik_roy.jpeg',
+  },
+  {
+    name: 'Bhargav Venkat',
+    role: 'Executive',
+    image: '/Bhargav.jpeg',
+  },
+  {
+    name: 'Saksham Shreyas',
+    role: 'Executive',
+    image: '/Saksham.jpeg',
   },
 ];
 
@@ -119,7 +129,7 @@ export default function CSTeam() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="w-56 md:w-64"
+              className="w-48 md:w-56 lg:w-[13.5rem] xl:w-56 shrink-0"
             >
               <CometCard>
                 <button

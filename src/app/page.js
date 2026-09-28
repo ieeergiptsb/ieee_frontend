@@ -88,7 +88,7 @@ const chapterCards = [
     description:
       "Flagship hackathons, full-stack build weeks, and low-level labs curated by the Computer Society.",
     accent: "from-violet-500/80 via-fuchsia-500/80 to-pink-500/80",
-    href: "/chapters/code-club",
+    href: "/chapters/cs-society",
   },
   {
     id: "wie",

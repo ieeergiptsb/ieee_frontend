@@ -16,11 +16,24 @@ const projects = [
     category: 'App Development',
     image: '/project2.png',
     link: 'https://github.com/sys6-exe/SanRaksha',
+  },
+  {
+    id: 3,
+    title: 'PrakritiX',
+    category: 'AI/ML',
+    image: '/project4.png',
+    link: 'https://github.com/Saksham-Shreyans/PrakritiX',
+  },
+  {
+    id: 4,
+    title: 'DevQuote',
+    category: 'Web Development',
+    image: '/project5.png',
+    link: 'https://github.com/jainarjav80-sys/Dev-Quote',
   }
 ];
 
 export default function CSProjects() {
-  const infiniteProjects = [...projects, ...projects];
 
   return (
     <section className="relative bg-transparent py-16 overflow-hidden">
@@ -50,13 +63,9 @@ export default function CSProjects() {
           <div className="px-6 md:px-12">
             <h3 className="text-white text-3xl font-bold mb-6 tracking-wider">PROJECTS</h3>
           </div>
-          <div className="flex overflow-hidden group">
-            <motion.div
-              animate={{ x: ["0%", "-50%"] }}
-              transition={{ repeat: Infinity, ease: "linear", duration: 30 }}
-              className="flex gap-6 w-max px-6 pb-8"
-            >
-              {infiniteProjects.map((project, idx) => {
+          <div className="w-full flex justify-center">
+            <div className="flex flex-wrap justify-center gap-6 px-6 pb-8 max-w-7xl">
+              {projects.map((project, idx) => {
                 const CardWrapper = project.link ? 'a' : 'div';
                 return (
                   <CardWrapper
@@ -84,7 +93,7 @@ export default function CSProjects() {
                   </CardWrapper>
                 );
               })}
-            </motion.div>
+            </div>
           </div>
         </div>
 

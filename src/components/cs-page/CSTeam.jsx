@@ -53,6 +53,11 @@ const executives = [
     role: 'Executive',
     image: '/Saksham.jpeg',
   },
+  {
+    name: 'Nimit Jain',
+    role: 'Executive',
+    image: '/nimit.jpeg',
+  },
 ];
 
 export default function CSTeam() {

@@ -11,6 +11,16 @@ const teamMembers = [
     image: '/Arindol.jpeg',
   },
   {
+    name: 'Keshav Kashyap',
+    role: 'CS Vice-Secretary',
+    image: '/keshav.jpeg',
+  },
+  {
+    name: 'Prashant Singh',
+    role: 'CS Vice-Secretary',
+    image: '/prashant.jpeg',
+  },
+  {
     name: 'Akash Rai',
     role: 'Webmaster',
     image: '/akash_rai.jpeg',
@@ -62,11 +72,11 @@ export default function CSTeam() {
           <p className="text-gray-400">The minds behind the machines.</p>
         </motion.div>
 
-        <div className="flex flex-wrap justify-center gap-8 max-w-4xl mx-auto">
+        <div className="flex flex-wrap justify-center gap-6 max-w-7xl mx-auto">
           {teamMembers.map((member, index) => (
             <motion.div
               key={index}
-              className="w-full sm:w-72 md:w-80 shrink-0"
+              className="w-64 sm:w-64 md:w-64 xl:w-[17.5rem] shrink-0"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -97,9 +107,9 @@ export default function CSTeam() {
                       />
                     </div>
                   </div>
-                  <div className="mt-2 flex flex-shrink-0 items-center justify-between p-4 font-mono text-white">
-                    <div className="text-sm font-semibold">{member.name}</div>
-                    <div className="text-xs text-emerald-400 opacity-80 uppercase tracking-wider">{member.role}</div>
+                  <div className="mt-2 flex flex-shrink-0 items-center justify-between p-3 md:p-4 font-mono text-white gap-2">
+                    <div className="text-xs md:text-sm font-semibold truncate">{member.name}</div>
+                    <div className="text-[10px] md:text-xs text-emerald-400 opacity-80 uppercase tracking-wider shrink-0">{member.role}</div>
                   </div>
                 </button>
               </CometCard>

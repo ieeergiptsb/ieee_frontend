@@ -39,7 +39,13 @@ export default function MemberDetailPage() {
         if (response.ok) {
           const data = await response.json();
           if (data.success && data.member) {
-            setMember(data.member);
+            const name = data.member.name || "";
+            const mappedImage = name ? teamImagesMap[name] : null;
+            const firstNameImage = name ? teamImagesMap[name.split(" ")[0]] : null;
+            setMember({
+              ...data.member,
+              image: mappedImage || data.member.image || firstNameImage || null,
+            });
             setLoading(false);
             return;
           }

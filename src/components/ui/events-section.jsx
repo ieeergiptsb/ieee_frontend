@@ -3,13 +3,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 
-// Active upcoming events — RoboGenesis Robotics Workshop
+// Featured events & highlights
 const events = [
   {
-    name: 'RoboGenesis',
-    slug: 'robogenesis',
-    image: '/robogenises/ROBOGENESIS.png',
-    route: '/events/robogenesis',
+    name: 'RoboQuest',
+    slug: 'roboquest',
+    image: '/roboquest.png',
+    route: '/events/roboquest',
     color: '#8b5cf6',
     tag: 'TechFest IIT Bombay Partner',
     attendees: 'Robotics Workshop',
@@ -157,7 +157,7 @@ const EventsSection = () => {
             filter: 'drop-shadow(0 0 20px rgba(96, 165, 250, 0.6))',
           }}
         >
-          Upcoming IEEE Programs
+          Featured IEEE Programs
         </h2>
         <div className="mt-6 sm:mt-8 max-w-2xl mx-auto px-2">
           <div className="w-20 sm:w-24 md:w-32 h-0.5 sm:h-1 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 rounded-full mx-auto mb-4 sm:mb-6 shadow-lg shadow-blue-400/50" />
@@ -219,7 +219,7 @@ const EventsSection = () => {
                       <div className="flex items-center justify-between gap-2">
                         <div>
                           <div className="flex items-center gap-1.5 mb-0.5">
-                            <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
+                            <span className="w-2 h-2 rounded-full bg-purple-400" />
                             <span className="text-[11px] uppercase tracking-wider text-purple-300 font-semibold">{event.timeline}</span>
                           </div>
                           <h3 className="text-base sm:text-lg font-bold text-white tracking-wide">{event.name}</h3>

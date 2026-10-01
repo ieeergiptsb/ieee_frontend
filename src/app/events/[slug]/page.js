@@ -27,6 +27,7 @@ const navItems = [
 ];
 
 const SLUG_POSTER_MAP = {
+  'roboquest': '/roboquest.png',
   'robogenesis': '/robogenises/ROBOGENESIS.png',
   'robotics-workshop-2026': '/robogenises/ROBOGENESIS.png',
   'devwave-2026': '/images/posters/devwave.png',
@@ -34,6 +35,15 @@ const SLUG_POSTER_MAP = {
 };
 
 const STATIC_UPDATES_MAP = {
+  'roboquest': [
+    {
+      _id: 'roboquest-whatsapp-update',
+      title: 'Official WhatsApp Community Group',
+      short_description: 'Join the official participants WhatsApp group for workshop schedule, bot design resources, competition updates, and TechFest wildcard entry announcements.',
+      link: 'https://chat.whatsapp.com/C5Ypne3xe7A76CVyh9Ksxt',
+      createdAt: new Date().toISOString(),
+    },
+  ],
   'robogenesis': [
     {
       _id: 'robogenesis-whatsapp-update',
@@ -55,6 +65,28 @@ const STATIC_UPDATES_MAP = {
 };
 
 const STATIC_EVENTS_MAP = {
+  'roboquest': {
+    slug: 'roboquest',
+    title: 'RoboQuest',
+    category: 'Workshop',
+    partner: 'TechFest, IIT Bombay',
+    tagline: 'Build. Learn. Compete. Innovate — One-Day Robotics Workshop',
+    duration: 'One-Day Intensive Workshop',
+    banner_url: '/roboquest.png',
+    short_description: 'RoboQuest is a robotics workshop organised by the IEEE RGIPT Robotics & Automation Society in association with TechFest, IIT Bombay.',
+    description: 'RoboQuest is a premier robotics workshop organised by the IEEE RGIPT Robotics & Automation Society in association with TechFest, IIT Bombay.\n\nThe workshop will cover bot design, Arduino basics, and strategies for TechFest robotics competitions, helping participants develop practical robotics skills and explore opportunities to participate in TechFest competitions through wildcard entries.\n\nOrganized by IEEE RGIPT Student Branch in collaboration with TechFest, IIT Bombay.',
+    highlights: [
+      'Hands-on Making & Bot Design',
+      'Learn Robotics and Build Your Technical Skills',
+      'Strategies for Roboreach, Meshmerize & Thetashift',
+      'Chance to get Wildcard Entry in TechFest, IIT Bombay',
+      'Mentorship from Senior IEEE Robotics Developers'
+    ],
+    topics: ['Bot Design', 'Arduino Basics', 'Strategies for Roboreach, Meshmerize and Thetashift', 'Sensors', 'TechFest IIT Bombay'],
+    registrationDisabled: false,
+    isCompleted: false,
+    statusNote: 'Registration is Open!'
+  },
   'robogenesis': {
     slug: 'robogenesis',
     title: 'RoboGenesis',
@@ -73,9 +105,9 @@ const STATIC_EVENTS_MAP = {
       'Mentorship from Senior IEEE Robotics Developers'
     ],
     topics: ['Bot Design', 'Arduino Basics', 'Roboreach', 'Meshmerize', 'Thetashift', 'Sensors', 'TechFest IIT Bombay'],
-    registrationDisabled: false,
-    isUpcoming: false,
-    statusNote: 'Registration is Open — Organized in association with TechFest, IIT Bombay.'
+    registrationDisabled: true,
+    isCompleted: true,
+    statusNote: 'Event Completed — Registration is closed. Check out past highlights in the event archive.'
   },
   'robotics-workshop-2026': {
     slug: 'robogenesis',
@@ -95,9 +127,9 @@ const STATIC_EVENTS_MAP = {
       'Mentorship from Senior IEEE Robotics Developers'
     ],
     topics: ['Bot Design', 'Arduino Basics', 'Roboreach', 'Meshmerize', 'Thetashift', 'Sensors', 'TechFest IIT Bombay'],
-    registrationDisabled: false,
-    isUpcoming: false,
-    statusNote: 'Registration is Open — Organized in association with TechFest, IIT Bombay.'
+    registrationDisabled: true,
+    isCompleted: true,
+    statusNote: 'Event Completed — Registration is closed. Check out past highlights in the event archive.'
   },
   'devwave-2026': {
     slug: 'devwave-2026',
@@ -178,7 +210,15 @@ export default function BootcampEventPage() {
           setEvent(null);
         }
       } else {
-        setEvent(r.event);
+        const isPastSlug = slug === 'robogenesis' || slug === 'robotics-workshop-2026' || slug === 'devwave-2026' || slug === 'codenex-3';
+        setEvent({
+          ...r.event,
+          ...(isPastSlug ? {
+            registrationDisabled: true,
+            isCompleted: true,
+            statusNote: 'Event Completed — Registration is closed. Check out past highlights in the event archive.'
+          } : {})
+        });
         setLoadError("");
       }
       setPageLoading(false);
@@ -216,6 +256,10 @@ export default function BootcampEventPage() {
   }, [slug, user, authLoading, isSignedIn]);
 
   const handleRegister = async () => {
+    if (event?.registrationDisabled || event?.isCompleted || slug === 'robogenesis' || slug === 'robotics-workshop-2026') {
+      setToast("Registration for this event is closed.");
+      return;
+    }
     if (!isSignedIn) {
       router.push(`/signin?redirect=${encodeURIComponent(`/events/${slug}`)}`);
       return;

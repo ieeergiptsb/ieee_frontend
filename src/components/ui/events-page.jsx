@@ -92,45 +92,55 @@ const isTimelinePast = (dateString) => {
 // --- Events Data (Current & Upcoming) ---
 export const EVENTS_DATA = [
   {
-    id: 'robogenesis',
-    event_slug: 'robogenesis',
-    title: 'RoboGenesis',
+    id: 'roboquest',
+    slug: 'roboquest',
+    event_slug: 'roboquest',
+    title: 'RoboQuest',
     category: 'Workshops',
-    date: 'One-Day Intensive Workshop',
-    time: 'One-Day Robotic Workshop',
-    description: 'RoboGenesis is a robotics workshop organised by the IEEE RGIPT Robotics & Automation Society in association with TechFest, IIT Bombay.',
-    fullDescription: 'RoboGenesis is a premier robotics workshop organised by the IEEE RGIPT Robotics & Automation Society in association with TechFest, IIT Bombay. The workshop covers bot design, Arduino basics, and strategies for TechFest robotics competitions, helping participants develop practical robotics skills and explore opportunities to participate in TechFest competitions through wildcard entries.',
-    image: '/robogenises/ROBOGENESIS.png',
+    date: 'Coming Soon',
+    time: 'One-Day Robotics Workshop',
+    description: 'RoboQuest is a premier robotics workshop organised by IEEE RGIPT Robotics & Automation Society in association with TechFest, IIT Bombay.',
+    fullDescription: 'RoboQuest is a premier robotics workshop organised by IEEE RGIPT Robotics & Automation Society in association with TechFest, IIT Bombay. The workshop covers bot design, Arduino basics, and strategies for TechFest robotics competitions, helping participants develop practical robotics skills and explore wildcard opportunities for TechFest competitions.',
+    image: '/roboquest.png',
     difficulty: 'Beginner to Intermediate',
     language: 'Arduino, Embedded Robotics, C++',
     location: 'RGIPT Campus (In association with TechFest, IIT Bombay)',
     requirements: [
-      'Bot Design Fundamentals',
-      'Arduino Basics & Sensors',
-      'Strategies for Roboreach, Meshmerize & Thetashift',
-      'Wildcard Opportunities for TechFest IIT Bombay'
+      'Bot Design',
+      'Arduino Basics',
+      'Strategies for Roboreach, Meshmerize & Thetashift'
     ],
     prizes: [
       'Chance to get Wildcard Entry in TechFest, IIT Bombay',
       'Official Certificates & IEEE RGIPT Goodies'
     ],
     registrationOpen: true,
-    route: '/events/robogenesis',
+    route: '/events/roboquest',
     seatsLimited: true,
     registeredSeats: 0,
     totalSeats: 150,
-  },
+  }
 ];
 
 // --- Past Events Data ---
 const PAST_EVENTS = [
+  {
+    id: 'robogenesis',
+    title: 'RoboGenesis',
+    category: 'Workshop',
+    date: 'Oct 2026',
+    description: 'A premier robotics workshop organized by the IEEE RGIPT Robotics & Automation Society in association with TechFest, IIT Bombay.',
+    image: '/robogenises/ROBOGENESIS.png',
+    route: '/events/robogenesis',
+  },
   {
     id: 'devwave-2026',
     title: 'DEVWAVE 2026',
     category: 'Bootcamp',
     date: 'May 2026',
     description: 'IEEE RGIPT\'s flagship full-stack development bootcamp exploring UI/UX, frontend, backend, and React with hands-on projects.',
-    image: '/images/posters/devwave.png'
+    image: '/images/posters/devwave.png',
+    route: '/events/devwave-2026',
   },
   {
     id: 'codenex-3',
@@ -138,7 +148,8 @@ const PAST_EVENTS = [
     category: 'Bootcamp',
     date: 'May 2026',
     description: 'A 10-week structured DSA learning program focused on problem-solving, coding logic, and technical interview preparation.',
-    image: '/images/posters/codenex.png'
+    image: '/images/posters/codenex.png',
+    route: '/events/codenex-3',
   },
   {
     id: 'codeforher',
@@ -232,6 +243,7 @@ const formatBootcampDate = (event) => {
 };
 
 const SLUG_POSTER_MAP = {
+  'roboquest': '/roboquest.png',
   'robogenesis': '/robogenises/ROBOGENESIS.png',
   'robotics-workshop-2026': '/robogenises/ROBOGENESIS.png',
   'devwave-2026': '/images/posters/devwave.png',
@@ -244,26 +256,31 @@ const resolveEventImage = (event) => {
   return SLUG_POSTER_MAP[event.slug] || '/images/posters/devwave.png';
 };
 
-const mapBootcampToEventCard = (event) => ({
-  id: event.slug,
-  event_slug: event.slug,
-  title: event.title,
-  category: event.category === 'workshop' ? 'Workshops' : 'Bootcamps',
-  date: formatBootcampDate(event),
-  time: event.duration || 'Scheduled Event',
-  description: event.short_description || event.tagline || event.description || 'IEEE program.',
-  fullDescription: event.description || event.short_description || event.tagline || 'IEEE program.',
-  image: resolveEventImage(event),
-  difficulty: 'Beginner',
-  language: (event.topics || []).slice(0, 3).join(', ') || 'Multiple tracks',
-  location: 'RGIPT Campus (S&T Council)',
-  requirements: event.topics || event.highlights || [],
-  registrationOpen: true,
-  route: `/events/${event.slug}`,
-  seatsLimited: false,
-  registeredSeats: 0,
-  totalSeats: 0,
-});
+const mapBootcampToEventCard = (event) => {
+  const isPast = ['robogenesis', 'robotics-workshop-2026', 'devwave-2026', 'codenex-3'].includes(event.slug);
+  return {
+    id: event.slug,
+    slug: event.slug,
+    event_slug: event.slug,
+    title: event.title,
+    category: event.category === 'workshop' ? 'Workshops' : 'Bootcamps',
+    date: formatBootcampDate(event),
+    time: event.duration || 'Scheduled Event',
+    description: event.short_description || event.tagline || event.description || 'IEEE program.',
+    fullDescription: event.description || event.short_description || event.tagline || 'IEEE program.',
+    image: resolveEventImage(event),
+    difficulty: 'Beginner',
+    language: (event.topics || []).slice(0, 3).join(', ') || 'Multiple tracks',
+    location: 'RGIPT Campus (S&T Council)',
+    requirements: event.topics || event.highlights || [],
+    registrationOpen: Boolean(event.is_active && !isPast),
+    isCompleted: isPast,
+    route: `/events/${event.slug}`,
+    seatsLimited: false,
+    registeredSeats: 0,
+    totalSeats: 0,
+  };
+};
 
 const EventCard = ({ event, onClick, index, isRegistered = false }) => {
   const isFull = event.seatsLimited && event.registeredSeats >= event.totalSeats;
@@ -585,12 +602,24 @@ const EventsPage = ({ isOpen, onClose, isFullPage = false }) => {
     });
   };
 
-  // API events take priority; if API is offline, bootcampEvents holds static EVENTS_DATA
-  const allEvents = [...bootcampEvents];
+  // API events take priority; if API doesn't include roboquest yet, include static EVENTS_DATA
+  const hasLiveRoboQuest = bootcampEvents.some(e => e.slug === 'roboquest' || e.event_slug === 'roboquest');
+  const allEvents = hasLiveRoboQuest ? [...bootcampEvents] : [...EVENTS_DATA, ...bootcampEvents];
 
   const filteredEvents = allEvents.filter(event => {
-    // Exclude completed past bootcamps from upcoming list
-    if (event.slug === 'devwave-2026' || event.slug === 'codenex-3' || event.isCompleted) return false;
+    const slug = (event.slug || event.event_slug || event.id || '').toLowerCase();
+    const title = (event.title || '').toLowerCase();
+
+    // Exclude completed past events from upcoming list
+    if (
+      slug.includes('robogenesis') ||
+      slug.includes('robotics-workshop') ||
+      slug.includes('devwave') ||
+      slug.includes('codenex') ||
+      title.includes('robogenesis') ||
+      event.isCompleted ||
+      !event.registrationOpen
+    ) return false;
     
     // Apply category and search filters
     const matchesCategory = selectedCategory === 'All' || event.category === selectedCategory;
@@ -713,8 +742,12 @@ const EventsPage = ({ isOpen, onClose, isFullPage = false }) => {
 
         {/* Empty State */}
         {filteredEvents.length === 0 && (
-          <div className="py-32 text-center border border-dashed border-white/10 rounded-3xl bg-white/5">
-            {/* ... existing empty state content ... */}
+          <div className="py-20 sm:py-24 text-center border border-dashed border-white/10 rounded-3xl bg-white/[0.02] px-6">
+            <Sparkles className="w-10 h-10 text-purple-400 mx-auto mb-4 opacity-80" />
+            <h3 className="text-xl font-bold text-white mb-2">No Upcoming Events Right Now</h3>
+            <p className="text-white/50 max-w-md mx-auto text-sm leading-relaxed">
+              We are preparing exciting new workshops, hackathons, and competitions. Check out our past highlights below!
+            </p>
           </div>
         )}
 
@@ -731,31 +764,36 @@ const EventsPage = ({ isOpen, onClose, isFullPage = false }) => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {PAST_EVENTS.map((event, idx) => (
-              <div 
-                key={event.id}
-                className="group relative bg-[#0a0a0a] border border-white/5 rounded-xl overflow-hidden hover:border-white/20 transition-all duration-300"
-              >
-                <div className="relative h-40 overflow-hidden">
-                  <div className="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-all duration-500 z-10" />
-                  <img 
-                    src={event.image} 
-                    alt={event.title}
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute top-3 right-3 z-20">
-                    <span className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider bg-black/60 backdrop-blur border border-white/10 rounded text-white/80">
-                      {event.date}
-                    </span>
+            {PAST_EVENTS.map((event, idx) => {
+              const CardTag = event.route ? 'a' : 'div';
+              const linkProps = event.route ? { href: event.route } : {};
+              return (
+                <CardTag 
+                  key={event.id}
+                  {...linkProps}
+                  className="group relative bg-[#0a0a0a] border border-white/5 rounded-xl overflow-hidden hover:border-white/20 transition-all duration-300 block"
+                >
+                  <div className="relative h-40 overflow-hidden">
+                    <div className="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-all duration-500 z-10" />
+                    <img 
+                      src={event.image} 
+                      alt={event.title}
+                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute top-3 right-3 z-20">
+                      <span className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider bg-black/60 backdrop-blur border border-white/10 rounded text-white/80">
+                        {event.date}
+                      </span>
+                    </div>
                   </div>
-                </div>
-                <div className="p-5">
-                  <div className="text-xs font-medium text-purple-400 mb-1">{event.category}</div>
-                  <h3 className="text-lg font-bold text-white mb-2">{event.title}</h3>
-                  <p className="text-sm text-white/50 line-clamp-2">{event.description}</p>
-                </div>
-              </div>
-            ))}
+                  <div className="p-5">
+                    <div className="text-xs font-medium text-purple-400 mb-1">{event.category}</div>
+                    <h3 className="text-lg font-bold text-white mb-2 group-hover:text-purple-300 transition-colors">{event.title}</h3>
+                    <p className="text-sm text-white/50 line-clamp-2">{event.description}</p>
+                  </div>
+                </CardTag>
+              );
+            })}
           </div>
         </div>
 

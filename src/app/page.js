@@ -39,14 +39,26 @@ const navItems = [
 const announcements = [
   {
     id: 1,
+    image: "/roboquest.png",
+    badge: "Registration Open",
+    partnerBadge: "In Association with TechFest, IIT Bombay",
+    title: "RoboQuest — National Robotics Workshop",
+    description: "RoboQuest is a premier robotics workshop organised by IEEE RGIPT Robotics & Automation Society in association with TechFest, IIT Bombay.",
+    description2: "Build. Learn. Compete. Innovate. Master bot design, Arduino basics, and strategies for TechFest competitions with wildcard entry opportunities.",
+    tags: ["Bot Design", "Arduino Basics", "TechFest IIT Bombay Wildcard", "Competition Strategies"],
+    primaryButton: { text: "Register Now", href: "/events/roboquest" },
+    secondaryButton: { text: "View Details", href: "/events/roboquest" }
+  },
+  {
+    id: 2,
     image: "/robogenises/ROBOGENESIS.png",
-    badge: "Robotics Workshop",
+    badge: "Completed",
     partnerBadge: "In Association with TechFest, IIT Bombay",
     title: "RoboGenesis — National Robotics Workshop",
-    description: "RoboGenesis is a robotics workshop organised by the IEEE RGIPT Robotics & Automation Society in association with TechFest, IIT Bombay.",
-    description2: "The workshop will cover bot design, Arduino basics, and strategies for TechFest robotics competitions, helping participants develop practical robotics skills and explore opportunities to participate in TechFest competitions through wildcard entries.",
+    description: "RoboGenesis was a premier robotics workshop organised by the IEEE RGIPT Robotics & Automation Society in association with TechFest, IIT Bombay.",
+    description2: "The workshop covered bot design, Arduino basics, and strategies for TechFest robotics competitions. Check out past highlights and workshop details in our archive.",
     tags: ["Bot Design", "Arduino Basics", "TechFest IIT Bombay Wildcard", "Competition Strategies"],
-    primaryButton: { text: "Explore RoboGenesis", href: "/events/robogenesis" },
+    primaryButton: { text: "View Past Highlights", href: "/events" },
     secondaryButton: { text: "View Details", href: "/events/robogenesis" }
   },
   {

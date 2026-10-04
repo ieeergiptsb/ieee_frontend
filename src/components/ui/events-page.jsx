@@ -96,11 +96,11 @@ export const EVENTS_DATA = [
     slug: 'roboquest',
     event_slug: 'roboquest',
     title: 'RoboQuest',
-    category: 'Workshops',
+    category: 'Competitions',
     date: 'Coming Soon',
-    time: 'One-Day Robotics Workshop',
-    description: 'RoboQuest is a premier robotics workshop organised by IEEE RGIPT Robotics & Automation Society in association with TechFest, IIT Bombay.',
-    fullDescription: 'RoboQuest is a premier robotics workshop organised by IEEE RGIPT Robotics & Automation Society in association with TechFest, IIT Bombay. The workshop covers bot design, Arduino basics, and strategies for TechFest robotics competitions, helping participants develop practical robotics skills and explore wildcard opportunities for TechFest competitions.',
+    time: 'Robotics Competition',
+    description: 'RoboQuest is a premier robotics competition organised by IEEE RGIPT Robotics & Automation Society in association with TechFest, IIT Bombay.',
+    fullDescription: 'RoboQuest is a premier robotics competition organised by IEEE RGIPT Robotics & Automation Society in association with TechFest, IIT Bombay. The competition covers bot design, Arduino basics, and strategies for TechFest robotics competitions, helping participants develop practical robotics skills and explore wildcard opportunities for TechFest competitions.',
     image: '/Roboquest2.0.png',
     difficulty: 'Beginner to Intermediate',
     language: 'Arduino, Embedded Robotics, C++',
@@ -256,14 +256,24 @@ const resolveEventImage = (event) => {
   return SLUG_POSTER_MAP[event.slug] || '/images/posters/devwave.png';
 };
 
+const getCategoryName = (cat) => {
+  if (!cat) return 'Bootcamps';
+  const catLower = String(cat).toLowerCase();
+  if (catLower === 'competition' || catLower === 'competitions') return 'Competitions';
+  if (catLower === 'workshop' || catLower === 'workshops') return 'Workshops';
+  if (catLower === 'hackathon' || catLower === 'hackathons') return 'Hackathons';
+  return 'Bootcamps';
+};
+
 const mapBootcampToEventCard = (event) => {
   const isPast = ['robogenesis', 'robotics-workshop-2026', 'devwave-2026', 'codenex-3'].includes(event.slug);
+  const isEventActive = event.is_active !== undefined ? Boolean(event.is_active) : true;
   return {
     id: event.slug,
     slug: event.slug,
     event_slug: event.slug,
     title: event.title,
-    category: event.category === 'workshop' ? 'Workshops' : 'Bootcamps',
+    category: getCategoryName(event.category),
     date: formatBootcampDate(event),
     time: event.duration || 'Scheduled Event',
     description: event.short_description || event.tagline || event.description || 'IEEE program.',
@@ -273,7 +283,7 @@ const mapBootcampToEventCard = (event) => {
     language: (event.topics || []).slice(0, 3).join(', ') || 'Multiple tracks',
     location: 'RGIPT Campus (S&T Council)',
     requirements: event.topics || event.highlights || [],
-    registrationOpen: Boolean(event.is_active && !isPast),
+    registrationOpen: isEventActive && !isPast,
     isCompleted: isPast,
     route: `/events/${event.slug}`,
     seatsLimited: false,

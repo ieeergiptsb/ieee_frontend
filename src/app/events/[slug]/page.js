@@ -39,7 +39,7 @@ const STATIC_UPDATES_MAP = {
     {
       _id: 'roboquest-whatsapp-update',
       title: 'Official WhatsApp Community Group',
-      short_description: 'Join the official participants WhatsApp group for workshop schedule, bot design resources, competition updates, and TechFest wildcard entry announcements.',
+      short_description: 'Join the official participants WhatsApp group for competition schedule, bot design resources, competition updates, and TechFest wildcard entry announcements.',
       link: 'https://chat.whatsapp.com/LlgjFstcvGqFd7blPkcXt3',
       createdAt: new Date().toISOString(),
     },
@@ -68,13 +68,13 @@ const STATIC_EVENTS_MAP = {
   'roboquest': {
     slug: 'roboquest',
     title: 'RoboQuest',
-    category: 'Workshop',
+    category: 'Competition',
     partner: 'TechFest, IIT Bombay',
-    tagline: 'Build. Learn. Compete. Innovate — One-Day Robotics Workshop',
-    duration: 'One-Day Intensive Workshop',
+    tagline: 'Build. Learn. Compete. Innovate — One-Day Robotics Competition',
+    duration: 'Robotics Competition',
     banner_url: '/Roboquest2.0.png',
-    short_description: 'RoboQuest is a robotics workshop organised by the IEEE RGIPT Robotics & Automation Society in association with TechFest, IIT Bombay.',
-    description: 'RoboQuest is a premier robotics workshop organised by the IEEE RGIPT Robotics & Automation Society in association with TechFest, IIT Bombay.\n\nThe workshop will cover bot design, Arduino basics, and strategies for TechFest robotics competitions, helping participants develop practical robotics skills and explore opportunities to participate in TechFest competitions through wildcard entries.\n\nOrganized by IEEE RGIPT Student Branch in collaboration with TechFest, IIT Bombay.',
+    short_description: 'RoboQuest is a robotics competition organised by the IEEE RGIPT Robotics & Automation Society in association with TechFest, IIT Bombay.',
+    description: 'RoboQuest is a premier robotics competition organised by the IEEE RGIPT Robotics & Automation Society in association with TechFest, IIT Bombay.\n\nThe competition will cover bot design, Arduino basics, and strategies for TechFest robotics competitions, helping participants develop practical robotics skills and explore opportunities to participate in TechFest competitions through wildcard entries.\n\nOrganized by IEEE RGIPT Student Branch in collaboration with TechFest, IIT Bombay.',
     highlights: [
       'Hands-on Making & Bot Design',
       'Learn Robotics and Build Your Technical Skills',
@@ -180,6 +180,142 @@ function bannerSrc(url, slug) {
   return url;
 }
 
+function TeamRegistrationModal({ isOpen, onClose, onSubmit, isSubmitting, defaultUser }) {
+  const [teamName, setTeamName] = useState('');
+  const [members, setMembers] = useState([
+    { name: defaultUser?.full_name || '', email: defaultUser?.email || '', mobile: '', roll_no: '' },
+    { name: '', email: '', mobile: '', roll_no: '' },
+    { name: '', email: '', mobile: '', roll_no: '' },
+    { name: '', email: '', mobile: '', roll_no: '' },
+  ]);
+
+  useEffect(() => {
+    if (defaultUser) {
+      setMembers(prev => [
+        { name: defaultUser.full_name || prev[0].name, email: defaultUser.email || prev[0].email, mobile: prev[0].mobile, roll_no: prev[0].roll_no },
+        prev[1],
+        prev[2],
+        prev[3],
+      ]);
+    }
+  }, [defaultUser]);
+
+  const updateMember = (index, field, value) => {
+    setMembers(prev => {
+      const updated = [...prev];
+      updated[index] = { ...updated[index], [field]: value };
+      return updated;
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!teamName.trim()) {
+      alert('Please enter a team name.');
+      return;
+    }
+    const validMembers = members.filter(m => m.name.trim() && m.email.trim());
+    if (validMembers.length < 2) {
+      alert('Please fill details for at least 2 team members.');
+      return;
+    }
+    onSubmit({ team_name: teamName, team_size: validMembers.length, members: validMembers });
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md overflow-y-auto">
+      <div className="relative w-full max-w-2xl bg-[#0d0d0d] border border-purple-500/30 rounded-3xl p-6 sm:p-8 shadow-2xl my-8 text-white max-h-[90vh] overflow-y-auto">
+        <div className="flex justify-between items-center mb-6 border-b border-white/10 pb-4">
+          <div>
+            <h3 className="text-2xl font-black text-white">RoboQuest Team Registration</h3>
+            <p className="text-sm text-purple-300">Enter details for 4 team members (Leader + 3 members)</p>
+          </div>
+          <button onClick={onClose} className="text-white/60 hover:text-white p-2 text-xl font-bold">✕</button>
+        </div>
+
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+            <label className="block text-sm font-semibold text-white/90 mb-2">Team Name *</label>
+            <input
+              type="text"
+              required
+              placeholder="e.g. RoboInnovators"
+              value={teamName}
+              onChange={(e) => setTeamName(e.target.value)}
+              className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/15 text-white placeholder-white/30 focus:border-purple-500 focus:outline-none"
+            />
+          </div>
+
+          <div className="space-y-4">
+            <h4 className="text-sm font-bold uppercase tracking-wider text-purple-400">Team Members Details</h4>
+            {members.map((m, idx) => (
+              <div key={idx} className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold text-purple-300">
+                    Member {idx + 1} {idx === 0 ? '(Team Leader *)' : idx === 1 ? '(* Required)' : '(Optional)'}
+                  </span>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <input
+                    type="text"
+                    required={idx < 2}
+                    placeholder="Full Name *"
+                    value={m.name}
+                    onChange={(e) => updateMember(idx, 'name', e.target.value)}
+                    className="px-3 py-2.5 rounded-lg bg-white/5 border border-white/10 text-white text-sm placeholder-white/40 focus:border-purple-500 focus:outline-none"
+                  />
+                  <input
+                    type="email"
+                    required={idx < 2}
+                    placeholder="Email Address *"
+                    value={m.email}
+                    onChange={(e) => updateMember(idx, 'email', e.target.value)}
+                    className="px-3 py-2.5 rounded-lg bg-white/5 border border-white/10 text-white text-sm placeholder-white/40 focus:border-purple-500 focus:outline-none"
+                  />
+                  <input
+                    type="tel"
+                    required={idx < 2}
+                    placeholder="Phone / WhatsApp Number *"
+                    value={m.mobile}
+                    onChange={(e) => updateMember(idx, 'mobile', e.target.value)}
+                    className="px-3 py-2.5 rounded-lg bg-white/5 border border-white/10 text-white text-sm placeholder-white/40 focus:border-purple-500 focus:outline-none"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Roll No / College (Optional)"
+                    value={m.roll_no}
+                    onChange={(e) => updateMember(idx, 'roll_no', e.target.value)}
+                    className="px-3 py-2.5 rounded-lg bg-white/5 border border-white/10 text-white text-sm placeholder-white/40 focus:border-purple-500 focus:outline-none"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex justify-end gap-3 pt-4 border-t border-white/10">
+            <button
+              type="button"
+              onClick={onClose}
+              className="px-5 py-2.5 rounded-xl border border-white/10 text-white/70 hover:bg-white/5 text-sm font-semibold"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-blue-600 text-white text-sm font-semibold hover:from-purple-500 hover:to-blue-500 disabled:opacity-50"
+            >
+              {isSubmitting ? 'Registering Team...' : 'Complete Team Registration'}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}
+
 export default function BootcampEventPage() {
   const params = useParams();
   const slug = typeof params?.slug === "string" ? params.slug : "";
@@ -194,6 +330,7 @@ export default function BootcampEventPage() {
   const [regLoading, setRegLoading] = useState(false);
   const [updatesLoading, setUpdatesLoading] = useState(false);
   const [toast, setToast] = useState("");
+  const [isTeamModalOpen, setIsTeamModalOpen] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -255,7 +392,7 @@ export default function BootcampEventPage() {
     })();
   }, [slug, user, authLoading, isSignedIn]);
 
-  const handleRegister = async () => {
+  const handleRegisterClick = () => {
     if (event?.registrationDisabled || event?.isCompleted || slug === 'robogenesis' || slug === 'robotics-workshop-2026') {
       setToast("Registration for this event is closed.");
       return;
@@ -264,10 +401,20 @@ export default function BootcampEventPage() {
       router.push(`/signin?redirect=${encodeURIComponent(`/events/${slug}`)}`);
       return;
     }
+    // If RoboQuest or team competition, open team modal
+    if (slug === 'roboquest') {
+      setIsTeamModalOpen(true);
+    } else {
+      executeRegistration({});
+    }
+  };
+
+  const executeRegistration = async (teamPayload = {}) => {
     setRegLoading(true);
     setToast("");
-    const r = await bootcampService.register(slug);
+    const r = await bootcampService.register(slug, teamPayload);
     setRegLoading(false);
+    setIsTeamModalOpen(false);
     if (r.success) {
       setToast("Registered successfully! Check your email for confirmation.");
       setRegistered(true);
@@ -469,7 +616,7 @@ export default function BootcampEventPage() {
               </div>
               <button
                 type="button"
-                onClick={handleRegister}
+                onClick={handleRegisterClick}
                 disabled={regLoading || authLoading}
                 className="px-8 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-blue-600 font-semibold disabled:opacity-50 min-w-[160px]"
               >
@@ -554,6 +701,15 @@ export default function BootcampEventPage() {
           )}
         </div>
       </div>
+
+      <TeamRegistrationModal
+        isOpen={isTeamModalOpen}
+        onClose={() => setIsTeamModalOpen(false)}
+        onSubmit={executeRegistration}
+        isSubmitting={regLoading}
+        defaultUser={user}
+      />
+
       <Footer />
     </div>
   );

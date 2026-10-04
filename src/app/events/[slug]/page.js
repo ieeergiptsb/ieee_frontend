@@ -40,7 +40,7 @@ const STATIC_UPDATES_MAP = {
       _id: 'roboquest-whatsapp-update',
       title: 'Official WhatsApp Community Group',
       short_description: 'Join the official participants WhatsApp group for workshop schedule, bot design resources, competition updates, and TechFest wildcard entry announcements.',
-      link: 'https://chat.whatsapp.com/C5Ypne3xe7A76CVyh9Ksxt',
+      link: 'https://chat.whatsapp.com/LlgjFstcvGqFd7blPkcXt3',
       createdAt: new Date().toISOString(),
     },
   ],

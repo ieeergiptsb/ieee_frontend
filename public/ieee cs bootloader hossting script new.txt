@@ -1,0 +1,98 @@
+
+
+
+
+Good evening everyone, and a very warm welcome to the very first session of the CS Bootloader Series, a new initiative by the IEEE RGIPT Computer Society, a part of the IEEE RGIPT Student Branch.
+
+My name is Sahil, and it is my pleasure to welcome you all and host this inaugural session.
+
+Today marks the beginning of something new for the Computer Society — the launch of the CS Bootloader Series.
+
+We wanted to create an initiative that goes beyond conventional classroom learning and gives students an opportunity to understand how computer science works in the real world.
+
+Every developer’s journey begins with a single command — git clone.
+
+But today, we want to take you beyond that first command and towards something far more meaningful — git contribute.
+
+The CS Bootloader Series is designed as a hands-on learning journey where you will not just learn concepts, but also explore how developers actually build, collaborate, contribute, and ship software.
+
+Through this series, we aim to introduce you to:
+
+* Real-world development practices and workflows
+* Git and GitHub collaboration.
+* Open-source culture and contribution.
+* Working with real projects.
+* Effective collaboration in a developer community
+* The journey from learning code to contributing to code
+
+And since this is our very first session, we are especially excited to have you guys, be a part of the beginning of this initiative.
+
+We hope that this series becomes more than just a workshop series. We want it to become a platform where you can experiment, collaborate, make mistakes, learn from them, and gradually become confident contributors to the developer community.
+
+Our goal is simple — to help you move from someone who only learns about software to someone who actively builds and contributes to it.
+
+And our motto for this journey is:
+
+Learn. Build. Contribute. Repeat.
+
+So, without further delay, let’s boot up this journey together.
+
+Welcome to the very first edition of the CS Bootloader Series.
+
+
+
+
+
+Introducing the Main Speaker
+
+It is now my honour to introduce our main speaker for this series, Mr. Arindol Sarkar.
+
+Arindol sir is an undergraduate researcher at IIT Indore. His work has earned recognition at both national and international levels. He secured First Prize at the CSBase Advance Tier International Hackathon, and his research has been published in the Findings of EMNLP 2026, one of the most respected venues in natural language processing. He has also worked as a research intern at IIT (BHU) Varanasi.
+
+Arindol sir combines research depth with practical, hands-on engineering, which makes him the ideal guide for a series like this one.
+
+Please join me in giving him a warm round of applause.
+
+With that, I hand the stage over to our speakers
+
+
+
+
+Introducing the Guest Speaker
+
+We are equally delighted to welcome our guest speaker, Mr. Aditya Bhattacharya.
+
+Aditya sir is an AI/ML practitioner and open source contributor with a remarkable range of industry and community experience. He has worked as a Data Scientist Intern at SLB, an AI Intern at gigin.ai, and a Software Development Engineer Intern at FOSSEE, IIT Bombay.
+
+His commitment to open source is equally strong. He was selected for the Linux Foundation Mentorship Program (LFX) 2025 under LF Decentralized Trust. He is also an Amazon ML Summer School 2025 alumnus and ranked among the Top 95 in APAC at the Google AI Hackathon.
+
+From industry internships to open source mentorships and public speaking, Aditya's journey shows what consistent contribution can lead to. We are fortunate to have him share it with us tonight.
+
+Please join me in giving him a warm round of applause.
+
+
+
+With that, I hand the stage over to our speakers. I request everyone to keep your questions ready. This is a hands-on series, so please participate actively
+
+
+
+
+Closing
+
+
+Thank you, Arindol sir and Aditya sir , for such an insightful and practical session. Your time and expertise have given us a strong foundation for our open source journey.
+
+I would also like to thank:
+
+The IEEE RGIPT Computer Society and the organising team for their dedication
+The CORE members of ieee for their constant support and guidance
+The volunteers who worked behind the scenes
+And most importantly, all of you, for being here and being curious.
+
+
+
+"As we close the CS Bootloader Series, remember that the real work starts now. Pick a project, find an issue, and make that first pull request."
+
+"This was only the beginning. We look forward to seeing you all tomorrow, at 7 PM, right here , for the next part of the series. Please come with your laptops and your GitHub accounts ready."
+
+

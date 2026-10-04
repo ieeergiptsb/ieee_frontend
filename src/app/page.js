@@ -39,7 +39,7 @@ const navItems = [
 const announcements = [
   {
     id: 1,
-    image: "/roboquest.png",
+    image: "/Roboquest2.0.png",
     badge: "Registration Open",
     partnerBadge: "In Association with TechFest, IIT Bombay",
     title: "RoboQuest — National Robotics Workshop",

@@ -27,7 +27,7 @@ const navItems = [
 ];
 
 const SLUG_POSTER_MAP = {
-  'roboquest': '/roboquest.png',
+  'roboquest': '/Roboquest2.0.png',
   'robogenesis': '/robogenises/ROBOGENESIS.png',
   'robotics-workshop-2026': '/robogenises/ROBOGENESIS.png',
   'devwave-2026': '/images/posters/devwave.png',
@@ -72,7 +72,7 @@ const STATIC_EVENTS_MAP = {
     partner: 'TechFest, IIT Bombay',
     tagline: 'Build. Learn. Compete. Innovate — One-Day Robotics Workshop',
     duration: 'One-Day Intensive Workshop',
-    banner_url: '/roboquest.png',
+    banner_url: '/Roboquest2.0.png',
     short_description: 'RoboQuest is a robotics workshop organised by the IEEE RGIPT Robotics & Automation Society in association with TechFest, IIT Bombay.',
     description: 'RoboQuest is a premier robotics workshop organised by the IEEE RGIPT Robotics & Automation Society in association with TechFest, IIT Bombay.\n\nThe workshop will cover bot design, Arduino basics, and strategies for TechFest robotics competitions, helping participants develop practical robotics skills and explore opportunities to participate in TechFest competitions through wildcard entries.\n\nOrganized by IEEE RGIPT Student Branch in collaboration with TechFest, IIT Bombay.',
     highlights: [

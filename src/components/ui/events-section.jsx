@@ -12,7 +12,7 @@ const events = [
     route: '/events/roboquest',
     color: '#8b5cf6',
     tag: 'TechFest IIT Bombay Partner',
-    attendees: 'Robotics Workshop',
+    attendees: 'Robotics Competition',
     timeline: 'Registration Open',
   },
 ];

@@ -48,12 +48,16 @@ export const bootcampService = {
     return { success: true, registered: !!data.registered };
   },
 
-  async register(slug) {
+  async register(slug, registrationData = {}) {
     const token = authService.getToken();
     if (!token) return { success: false, error: 'Please sign in to register' };
     const res = await fetch(`${API()}/bootcamp/events/${encodeURIComponent(slug)}/register`, {
       method: 'POST',
-      headers: authService.getAuthHeaders(),
+      headers: {
+        ...authService.getAuthHeaders(),
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(registrationData),
     }).catch(() => null);
     if (!res?.ok) return { success: false, error: 'Registration failed or backend offline' };
     const data = await res.json().catch(() => ({}));

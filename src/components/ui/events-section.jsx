@@ -8,7 +8,7 @@ const events = [
   {
     name: 'RoboQuest',
     slug: 'roboquest',
-    image: '/roboquest.png',
+    image: '/Roboquest2.0.png',
     route: '/events/roboquest',
     color: '#8b5cf6',
     tag: 'TechFest IIT Bombay Partner',

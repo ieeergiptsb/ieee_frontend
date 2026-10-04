@@ -101,7 +101,7 @@ export const EVENTS_DATA = [
     time: 'One-Day Robotics Workshop',
     description: 'RoboQuest is a premier robotics workshop organised by IEEE RGIPT Robotics & Automation Society in association with TechFest, IIT Bombay.',
     fullDescription: 'RoboQuest is a premier robotics workshop organised by IEEE RGIPT Robotics & Automation Society in association with TechFest, IIT Bombay. The workshop covers bot design, Arduino basics, and strategies for TechFest robotics competitions, helping participants develop practical robotics skills and explore wildcard opportunities for TechFest competitions.',
-    image: '/roboquest.png',
+    image: '/Roboquest2.0.png',
     difficulty: 'Beginner to Intermediate',
     language: 'Arduino, Embedded Robotics, C++',
     location: 'RGIPT Campus (In association with TechFest, IIT Bombay)',
@@ -243,7 +243,7 @@ const formatBootcampDate = (event) => {
 };
 
 const SLUG_POSTER_MAP = {
-  'roboquest': '/roboquest.png',
+  'roboquest': '/Roboquest2.0.png',
   'robogenesis': '/robogenises/ROBOGENESIS.png',
   'robotics-workshop-2026': '/robogenises/ROBOGENESIS.png',
   'devwave-2026': '/images/posters/devwave.png',

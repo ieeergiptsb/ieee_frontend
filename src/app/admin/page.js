@@ -1775,6 +1775,7 @@ const AdminDashboard = () => {
             </form>
           </div>
         </div>
+      )}
 
       {/* Registration Details Modal */}
       {showModal && modalType === 'registration' && selectedItem && (

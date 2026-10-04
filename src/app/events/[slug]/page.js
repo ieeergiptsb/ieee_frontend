@@ -214,12 +214,12 @@ function TeamRegistrationModal({ isOpen, onClose, onSubmit, isSubmitting, defaul
       alert('Please enter a team name.');
       return;
     }
-    const validMembers = members.filter(m => m.name.trim() && m.email.trim());
-    if (validMembers.length < 2) {
-      alert('Please fill details for at least 2 team members.');
+    const missingField = members.some(m => !m.name.trim() || !m.email.trim() || !m.mobile.trim() || !m.roll_no.trim());
+    if (missingField) {
+      alert('All 4 team members are required. Please fill in Name, Email, Phone, and Roll No / College for all 4 members.');
       return;
     }
-    onSubmit({ team_name: teamName, team_size: validMembers.length, members: validMembers });
+    onSubmit({ team_name: teamName, team_size: 4, members: members });
   };
 
   if (!isOpen) return null;
@@ -230,7 +230,7 @@ function TeamRegistrationModal({ isOpen, onClose, onSubmit, isSubmitting, defaul
         <div className="flex justify-between items-center mb-6 border-b border-white/10 pb-4">
           <div>
             <h3 className="text-2xl font-black text-white">RoboQuest Team Registration</h3>
-            <p className="text-sm text-purple-300">Enter details for 4 team members (Leader + 3 members)</p>
+            <p className="text-sm text-purple-300">Enter details for all 4 required team members (Leader + 3 members)</p>
           </div>
           <button onClick={onClose} className="text-white/60 hover:text-white p-2 text-xl font-bold">✕</button>
         </div>
@@ -249,18 +249,18 @@ function TeamRegistrationModal({ isOpen, onClose, onSubmit, isSubmitting, defaul
           </div>
 
           <div className="space-y-4">
-            <h4 className="text-sm font-bold uppercase tracking-wider text-purple-400">Team Members Details</h4>
+            <h4 className="text-sm font-bold uppercase tracking-wider text-purple-400">Team Members Details (4 Members Required)</h4>
             {members.map((m, idx) => (
               <div key={idx} className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 space-y-3">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold text-purple-300">
-                    Member {idx + 1} {idx === 0 ? '(Team Leader *)' : idx === 1 ? '(* Required)' : '(Optional)'}
+                    Member {idx + 1} {idx === 0 ? '(Team Leader *)' : '(* Required)'}
                   </span>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <input
                     type="text"
-                    required={idx < 2}
+                    required
                     placeholder="Full Name *"
                     value={m.name}
                     onChange={(e) => updateMember(idx, 'name', e.target.value)}
@@ -268,7 +268,7 @@ function TeamRegistrationModal({ isOpen, onClose, onSubmit, isSubmitting, defaul
                   />
                   <input
                     type="email"
-                    required={idx < 2}
+                    required
                     placeholder="Email Address *"
                     value={m.email}
                     onChange={(e) => updateMember(idx, 'email', e.target.value)}
@@ -276,7 +276,7 @@ function TeamRegistrationModal({ isOpen, onClose, onSubmit, isSubmitting, defaul
                   />
                   <input
                     type="tel"
-                    required={idx < 2}
+                    required
                     placeholder="Phone / WhatsApp Number *"
                     value={m.mobile}
                     onChange={(e) => updateMember(idx, 'mobile', e.target.value)}
@@ -284,7 +284,8 @@ function TeamRegistrationModal({ isOpen, onClose, onSubmit, isSubmitting, defaul
                   />
                   <input
                     type="text"
-                    placeholder="Roll No / College (Optional)"
+                    required
+                    placeholder="Roll No / College *"
                     value={m.roll_no}
                     onChange={(e) => updateMember(idx, 'roll_no', e.target.value)}
                     className="px-3 py-2.5 rounded-lg bg-white/5 border border-white/10 text-white text-sm placeholder-white/40 focus:border-purple-500 focus:outline-none"

@@ -1348,7 +1348,11 @@ const AdminDashboard = () => {
                         </tr>
                       ) : (
                         filteredRegistrations.map(reg => (
-                          <tr key={reg._id} className="border-b border-white/5 hover:bg-white/5 transition-colors">
+                          <tr 
+                            key={reg._id} 
+                            onClick={() => { setSelectedItem(reg); setModalType('registration'); setShowModal(true); }}
+                            className="border-b border-white/5 hover:bg-white/10 transition-colors cursor-pointer"
+                          >
                             <td className="py-3 px-4 text-white text-sm">
                               <div className="flex flex-col gap-1">
                                 <span>{reg.event_name}</span>
@@ -1772,6 +1776,68 @@ const AdminDashboard = () => {
           </div>
         </div>
 
+      {/* Registration Details Modal */}
+      {showModal && modalType === 'registration' && selectedItem && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 overflow-y-auto">
+          <div className="bg-[#0d0d0d] border border-purple-500/30 rounded-2xl p-6 md:p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto text-white shadow-2xl">
+            <div className="flex justify-between items-center mb-6 border-b border-white/10 pb-4">
+              <div>
+                <h3 className="text-2xl font-black text-white">{selectedItem.event_name}</h3>
+                <p className="text-sm text-purple-300">Registration Details — Team: {selectedItem.team_name || 'Individual'}</p>
+              </div>
+              <button onClick={() => { setShowModal(false); setSelectedItem(null); }} className="text-white/60 hover:text-white p-2 text-xl font-bold">✕</button>
+            </div>
+
+            <div className="space-y-6">
+              <div className="grid grid-cols-2 gap-4 p-4 rounded-xl bg-white/5 border border-white/10">
+                <div>
+                  <span className="text-xs text-white/50 font-bold uppercase">Team Name</span>
+                  <p className="text-white font-semibold">{selectedItem.team_name || 'Individual'}</p>
+                </div>
+                <div>
+                  <span className="text-xs text-white/50 font-bold uppercase">Team Size</span>
+                  <p className="text-white font-semibold">{selectedItem.team_size || 1}</p>
+                </div>
+                <div>
+                  <span className="text-xs text-white/50 font-bold uppercase">Status</span>
+                  <p className="text-green-400 font-semibold uppercase">{selectedItem.status || 'confirmed'}</p>
+                </div>
+                <div>
+                  <span className="text-xs text-white/50 font-bold uppercase">Date</span>
+                  <p className="text-white font-semibold">{new Date(selectedItem.registration_date || selectedItem.created_at).toLocaleDateString()}</p>
+                </div>
+              </div>
+
+              <div className="space-y-3">
+                <h4 className="text-sm font-bold uppercase tracking-wider text-purple-400">Team Members ({selectedItem.members?.length || 0})</h4>
+                {(selectedItem.members || []).map((m, idx) => (
+                  <div key={idx} className="p-4 rounded-xl bg-white/[0.03] border border-white/10 space-y-1">
+                    <div className="flex justify-between items-center mb-1">
+                      <span className="text-xs font-bold text-purple-300">
+                        Member {idx + 1} {idx === 0 ? '(Team Leader)' : ''}
+                      </span>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+                      <div><span className="text-white/50">Name:</span> <span className="text-white font-medium">{m.name || '-'}</span></div>
+                      <div><span className="text-white/50">Email:</span> <span className="text-white font-medium">{m.email || '-'}</span></div>
+                      <div><span className="text-white/50">Phone:</span> <span className="text-white font-medium">{m.mobile || '-'}</span></div>
+                      <div><span className="text-white/50">Roll No / College:</span> <span className="text-white font-medium">{m.roll_no || '-'}</span></div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex justify-end pt-4 border-t border-white/10">
+                <button
+                  onClick={() => { setShowModal(false); setSelectedItem(null); }}
+                  className="px-6 py-2.5 rounded-xl bg-purple-600 text-white text-sm font-semibold hover:bg-purple-500"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       )}
 
     </>

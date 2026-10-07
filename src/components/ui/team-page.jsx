@@ -77,7 +77,8 @@ export const TeamPage = () => {
       list.push({
         id: `professor-${index}`,
         name: professor.name,
-        position: "",
+        position: professor.position || "",
+        detail: [professor.title, professor.department].filter(Boolean).join(", "),
         email: "",
         image: professor.image,
         linkedin: "",

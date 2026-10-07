@@ -1,11 +1,11 @@
 // Team structure data - matches backend structure
 export const TEAM_STRUCTURE = {
   professors: [
-    { name: "Dr. Vijay Kumar Singh", image: "/team-images/Dr-Vijay-Kumar-Singh.jpg" },
-    { name: "Dr. Amarish Dubey", image: "/team-images/Dr-Amarish-Dubey.jpg" },
-    { name: "Dr. Ankur Pandey", image: "/team-images/Dr-Ankur-Pandey.jpg" },
-    { name: "Dr. Sajal Agarwal", image: "/team-images/Dr-Sajal-Agarwal.jpg" },
-    { name: "Dr. Kalka Dubey", image: "/team-images/Dr-Kalka-Dubey.jpg" }
+    { name: "Dr. Amarish Dubey", image: "/team-images/Dr-Amarish-Dubey.jpg", title: "Assistant Professor", department: "EEE Department", position: "Faculty Advisor – RAS IEEE RGIPT" },
+    { name: "Dr. Sajal Agarwal", image: "/team-images/Dr-Sajal-Agarwal.jpg", title: "Assistant Professor", department: "EEE Department", position: "Faculty Advisor – WIE IEEE RGIPT" },
+    { name: "Dr. Vijay Kumar Singh", image: "/team-images/Dr-Vijay-Kumar-Singh.jpg", title: "Assistant Professor", department: "EEE Department", position: "Faculty Convener – IEEE RGIPT SB" },
+    { name: "Dr. Kalka Dubey", image: "/team-images/Dr-Kalka-Dubey.jpg", title: "Assistant Professor", department: "CSE Department", position: "Faculty Advisor – CS IEEE RGIPT" },
+    { name: "Dr. Ankur Pandey", image: "/team-images/Dr-Ankur-Pandey.jpg", title: "Assistant Professor", department: "CSE Department", position: "Faculty Advisor – ComSoc IEEE RGIPT" }
   ],
   executive_officers: [
     { position: "Chair", name: "Anagh Krishna Singh", email: "24ev3004@rgipt.ac.in" },

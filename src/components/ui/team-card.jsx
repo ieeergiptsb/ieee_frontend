@@ -37,14 +37,19 @@ export const TeamCard = ({ member }) => {
     ? null
     : (member.slug ? `/team/${member.slug}` : (member.linkedin || null));
   
-  // Resolve member image
+  // Prefer the curated team photo for this exact name. The API profile
+  // image is only used when no team photo is mapped (registration uploads
+  // can be a signature rather than a portrait).
   const firstName = member.name ? member.name.split(" ")[0] : "";
-  const staticImage = (member.hideImage || isAnonymous)
-    ? null
-    : (teamImagesMap[member.name] || teamImagesMap[firstName]);
+  const mappedImage = (!member.hideImage && !isAnonymous && member.name)
+    ? teamImagesMap[member.name]
+    : null;
+  const firstNameImage = (!member.hideImage && !isAnonymous && firstName)
+    ? teamImagesMap[firstName]
+    : null;
   const imageSource = (member.hideImage || isAnonymous)
     ? null
-    : (member.image || staticImage || null);
+    : (mappedImage || member.image || firstNameImage || null);
 
   return (
     <motion.div
@@ -103,6 +108,11 @@ export const TeamCard = ({ member }) => {
               <h3 className="text-xl md:text-2xl font-medium text-white tracking-tight">
                 {member.name}
               </h3>
+            ) : null}
+            {member.detail ? (
+              <p className="text-xs font-normal text-white/50 tracking-wide">
+                {member.detail}
+              </p>
             ) : null}
             {member.position ? (
               <p className="text-sm font-normal text-white/60 tracking-wide uppercase">

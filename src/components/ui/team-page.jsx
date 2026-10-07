@@ -194,7 +194,7 @@ export const TeamPage = () => {
     });
 
     // 3. Add any dynamic backend teams not covered in TEAM_STRUCTURE
-    const teamOrder = ['Joint Secretaries', 'Design', 'Audit', 'Editorial', 'WIE', 'ComSoc', 'RAS', 'CS', 'Event', 'CNM', 'General'];
+    const teamOrder = ['Joint Secretaries', 'Design', 'Audit', 'Editorial', 'WIE', 'ComSoc', 'RAS', 'CS', 'Event', 'CNM'];
     teamOrder.forEach(teamName => {
       const teamMembers = newDesignationMembers[teamName];
       if (teamMembers && teamMembers.length > 0) {

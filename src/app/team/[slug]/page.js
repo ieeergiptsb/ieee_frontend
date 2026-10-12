@@ -18,6 +18,50 @@ const navItems = [
   { label: "Contact", href: "/contact" },
 ];
 
+const toSlug = (name) =>
+  (name || "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+
+const findStructuredMember = (memberSlug, email) => {
+  const matches = (person) => {
+    if (!person?.name) return false;
+    if (email && person.email && person.email.toLowerCase() === email.toLowerCase()) {
+      return true;
+    }
+    const slug = toSlug(person.name);
+    return slug === memberSlug || (memberSlug && memberSlug.startsWith(slug));
+  };
+
+  for (const exec of TEAM_STRUCTURE.executive_officers || []) {
+    if (matches(exec)) {
+      return { ...exec, team: "Leaders", position: exec.position };
+    }
+  }
+
+  for (const [teamKey, teamData] of Object.entries(TEAM_STRUCTURE.teams || {})) {
+    for (const officer of teamData.officers || []) {
+      if (matches(officer)) {
+        return { ...officer, team: teamKey, position: officer.position };
+      }
+    }
+
+    const head = teamData.heads_and_coheads?.head;
+    if (matches(head)) {
+      return { ...head, team: teamKey, position: head.position || "Head" };
+    }
+
+    for (const cohead of teamData.heads_and_coheads?.co_heads || []) {
+      if (matches(cohead)) {
+        return { ...cohead, team: teamKey, position: cohead.position || "Co-Head" };
+      }
+    }
+  }
+
+  return null;
+};
+
 export default function MemberDetailPage() {
   const params = useParams();
   const router = useRouter();
@@ -42,8 +86,11 @@ export default function MemberDetailPage() {
             const name = data.member.name || "";
             const mappedImage = name ? teamImagesMap[name] : null;
             const firstNameImage = name ? teamImagesMap[name.split(" ")[0]] : null;
+            const structured = findStructuredMember(params.slug, data.member.email);
             setMember({
               ...data.member,
+              position: structured?.position || data.member.position,
+              team: structured?.team || data.member.team,
               image: mappedImage || data.member.image || firstNameImage || null,
             });
             setLoading(false);
@@ -55,70 +102,13 @@ export default function MemberDetailPage() {
       } catch (err) {
         console.warn('Backend unavailable, falling back to static data:', err);
         
-        // STATIC DATA FALLBACK
-        const memberSlug = params.slug;
-        let foundMember = null;
-        let memberTeam = "";
-        let memberPos = "";
-
-        // Helper to check if slug matches
-        const checkMatch = (person, teamName, pos) => {
-          if (!person?.name) return false;
-          // Simple slug generator for comparison
-          const slug = person.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-          // In team-data.js, officers might have '-cs' etc appended, but let's just do a basic match first
-          // Actually, if we just check if the slug matches the person name loosely:
-          if (slug === memberSlug || memberSlug.startsWith(slug)) {
-            foundMember = person;
-            memberTeam = teamName;
-            memberPos = person.position || pos;
-            return true;
-          }
-          return false;
-        };
-
-        // Search executive officers
-        if (TEAM_STRUCTURE.executive_officers) {
-          for (const exec of TEAM_STRUCTURE.executive_officers) {
-            if (checkMatch(exec, "Leaders", exec.position)) break;
-          }
-        }
-
-        // Search teams
-        if (!foundMember && TEAM_STRUCTURE.teams) {
-          for (const [teamKey, teamData] of Object.entries(TEAM_STRUCTURE.teams)) {
-            if (foundMember) break;
-            
-            // check officers
-            if (teamData.officers) {
-              for (const off of teamData.officers) {
-                if (checkMatch(off, teamKey, off.position)) break;
-              }
-            }
-            if (foundMember) break;
-            
-            // check head
-            if (teamData.heads_and_coheads?.head) {
-              if (checkMatch(teamData.heads_and_coheads.head, teamKey, "Head")) break;
-            }
-            if (foundMember) break;
-            
-            // check coheads
-            if (teamData.heads_and_coheads?.co_heads) {
-              for (const cohead of teamData.heads_and_coheads.co_heads) {
-                if (checkMatch(cohead, teamKey, "Co-Head")) break;
-              }
-            }
-          }
-        }
+        const foundMember = findStructuredMember(params.slug);
 
         if (foundMember) {
           const staticImage = teamImagesMap[foundMember.name] || teamImagesMap[foundMember.name.split(" ")[0]];
           
           setMember({
             ...foundMember,
-            team: memberTeam,
-            position: memberPos,
             image: staticImage || null,
             bio: "IEEE Student Branch RGIPT Core Team Member.",
             achievements: "Driving excellence and innovation in our student chapter.",
